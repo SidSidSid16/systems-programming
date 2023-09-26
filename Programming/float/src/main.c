@@ -8,8 +8,8 @@ int main(void) {
 	
 	float t = 0.0;
 	while(1) {
-		t += 0.3;
-		printf("t = %f\r\n", t);
+		t += 0.3f;
+		printf("t = %f\r\n", (double) t);
 	}
 
 }
