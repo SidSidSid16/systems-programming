@@ -953,62 +953,62 @@ Image Symbol Table
     [Anonymous Symbol]                       0x080021b4   Section        0  utils.o(.text.configClock)
     [Anonymous Symbol]                       0x08002270   Section        0  utils.o(.text.configUSART2)
     [Anonymous Symbol]                       0x08002330   Section        0  main.o(.text.main)
-    square                                   0x0800237d   Thumb Code    28  main.o(.text.square)
+    square                                   0x0800237d   Thumb Code    40  main.o(.text.square)
     [Anonymous Symbol]                       0x0800237c   Section        0  main.o(.text.square)
-    [Anonymous Symbol]                       0x08002398   Section        0  utils.o(.text.stdout_putchar)
-    [Anonymous Symbol]                       0x080023c4   Section        0  utils.o(.text.ttywrch)
-    CL$$btod_d2e                             0x080023d4   Section       62  btod.o(CL$$btod_d2e)
-    CL$$btod_d2e_denorm_low                  0x08002412   Section       70  btod.o(CL$$btod_d2e_denorm_low)
-    CL$$btod_d2e_norm_op1                    0x08002458   Section       96  btod.o(CL$$btod_d2e_norm_op1)
-    CL$$btod_div_common                      0x080024b8   Section      824  btod.o(CL$$btod_div_common)
-    CL$$btod_e2e                             0x080027f0   Section      220  btod.o(CL$$btod_e2e)
-    CL$$btod_ediv                            0x080028cc   Section       42  btod.o(CL$$btod_ediv)
-    CL$$btod_emul                            0x080028f6   Section       42  btod.o(CL$$btod_emul)
-    CL$$btod_mult_common                     0x08002920   Section      580  btod.o(CL$$btod_mult_common)
-    i.__ARM_fpclassify                       0x08002b64   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i._is_digit                              0x08002b94   Section        0  __printf_wp.o(i._is_digit)
-    i.fputc                                  0x08002ba2   Section        0  fputc.o(i.fputc)
-    locale$$code                             0x08002bbc   Section       44  lc_numeric_c.o(locale$$code)
-    locale$$code                             0x08002be8   Section       44  lc_ctype_c.o(locale$$code)
-    $v0                                      0x08002c14   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08002c14   Section       26  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x08002c2e   Number         0  printf1.o(x$fpl$printf1)
-    x$fpl$printf1                            0x08002c2e   Section        4  printf1.o(x$fpl$printf1)
-    $v0                                      0x08002c32   Number         0  printf2.o(x$fpl$printf2)
-    x$fpl$printf2                            0x08002c32   Section        4  printf2.o(x$fpl$printf2)
-    x$fpl$usenofp                            0x08002c36   Section        0  usenofp.o(x$fpl$usenofp)
-    initial_mbstate                          0x08002c38   Data           8  _printf_wctomb.o(.constdata)
-    .constdata                               0x08002c38   Section        8  _printf_wctomb.o(.constdata)
-    uc_hextab                                0x08002c40   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    .constdata                               0x08002c40   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
-    lc_hextab                                0x08002c54   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    maptable                                 0x08002c68   Data          17  __printf_flags_ss_wp.o(.constdata)
-    .constdata                               0x08002c68   Section       17  __printf_flags_ss_wp.o(.constdata)
-    lc_hextab                                0x08002c79   Data          19  _printf_fp_hex.o(.constdata)
-    .constdata                               0x08002c79   Section       38  _printf_fp_hex.o(.constdata)
-    uc_hextab                                0x08002c8c   Data          19  _printf_fp_hex.o(.constdata)
-    tenpwrs_x                                0x08002ca0   Data          60  bigflt0.o(.constdata)
-    .constdata                               0x08002ca0   Section      148  bigflt0.o(.constdata)
-    tenpwrs_i                                0x08002cdc   Data          64  bigflt0.o(.constdata)
-    .L.str.2                                 0x08002d5b   Data          13  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08002d5b   Section        0  main.o(.rodata.str1.1)
-    .L.str                                   0x08002d68   Data          18  main.o(.rodata.str1.1)
-    .L.str.1                                 0x08002d7a   Data          13  main.o(.rodata.str1.1)
-    .L.str                                   0x08002d87   Data           7  retarget_io.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08002d87   Section        0  retarget_io.o(.rodata.str1.1)
-    .L.str.2                                 0x08002d8e   Data           8  retarget_io.o(.rodata.str1.1)
-    .L.str.1                                 0x08002d96   Data           8  retarget_io.o(.rodata.str1.1)
-    locale$$data                             0x08002dc0   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x08002dc4   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x08002dcc   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x08002dd8   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x08002dda   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x08002ddb   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x08002ddc   Data           0  lc_numeric_c.o(locale$$data)
-    locale$$data                             0x08002ddc   Section      272  lc_ctype_c.o(locale$$data)
-    __lcctype_c_name                         0x08002de0   Data           2  lc_ctype_c.o(locale$$data)
-    __lcctype_c_start                        0x08002de8   Data           0  lc_ctype_c.o(locale$$data)
-    __lcctype_c_end                          0x08002eec   Data           0  lc_ctype_c.o(locale$$data)
+    [Anonymous Symbol]                       0x080023a4   Section        0  utils.o(.text.stdout_putchar)
+    [Anonymous Symbol]                       0x080023d0   Section        0  utils.o(.text.ttywrch)
+    CL$$btod_d2e                             0x080023e0   Section       62  btod.o(CL$$btod_d2e)
+    CL$$btod_d2e_denorm_low                  0x0800241e   Section       70  btod.o(CL$$btod_d2e_denorm_low)
+    CL$$btod_d2e_norm_op1                    0x08002464   Section       96  btod.o(CL$$btod_d2e_norm_op1)
+    CL$$btod_div_common                      0x080024c4   Section      824  btod.o(CL$$btod_div_common)
+    CL$$btod_e2e                             0x080027fc   Section      220  btod.o(CL$$btod_e2e)
+    CL$$btod_ediv                            0x080028d8   Section       42  btod.o(CL$$btod_ediv)
+    CL$$btod_emul                            0x08002902   Section       42  btod.o(CL$$btod_emul)
+    CL$$btod_mult_common                     0x0800292c   Section      580  btod.o(CL$$btod_mult_common)
+    i.__ARM_fpclassify                       0x08002b70   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i._is_digit                              0x08002ba0   Section        0  __printf_wp.o(i._is_digit)
+    i.fputc                                  0x08002bae   Section        0  fputc.o(i.fputc)
+    locale$$code                             0x08002bc8   Section       44  lc_numeric_c.o(locale$$code)
+    locale$$code                             0x08002bf4   Section       44  lc_ctype_c.o(locale$$code)
+    $v0                                      0x08002c20   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08002c20   Section       26  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08002c3a   Number         0  printf1.o(x$fpl$printf1)
+    x$fpl$printf1                            0x08002c3a   Section        4  printf1.o(x$fpl$printf1)
+    $v0                                      0x08002c3e   Number         0  printf2.o(x$fpl$printf2)
+    x$fpl$printf2                            0x08002c3e   Section        4  printf2.o(x$fpl$printf2)
+    x$fpl$usenofp                            0x08002c42   Section        0  usenofp.o(x$fpl$usenofp)
+    initial_mbstate                          0x08002c44   Data           8  _printf_wctomb.o(.constdata)
+    .constdata                               0x08002c44   Section        8  _printf_wctomb.o(.constdata)
+    uc_hextab                                0x08002c4c   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    .constdata                               0x08002c4c   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
+    lc_hextab                                0x08002c60   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    maptable                                 0x08002c74   Data          17  __printf_flags_ss_wp.o(.constdata)
+    .constdata                               0x08002c74   Section       17  __printf_flags_ss_wp.o(.constdata)
+    lc_hextab                                0x08002c85   Data          19  _printf_fp_hex.o(.constdata)
+    .constdata                               0x08002c85   Section       38  _printf_fp_hex.o(.constdata)
+    uc_hextab                                0x08002c98   Data          19  _printf_fp_hex.o(.constdata)
+    tenpwrs_x                                0x08002cac   Data          60  bigflt0.o(.constdata)
+    .constdata                               0x08002cac   Section      148  bigflt0.o(.constdata)
+    tenpwrs_i                                0x08002ce8   Data          64  bigflt0.o(.constdata)
+    .L.str.1                                 0x08002d67   Data          14  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08002d67   Section        0  main.o(.rodata.str1.1)
+    .L.str.2                                 0x08002d75   Data          13  main.o(.rodata.str1.1)
+    .L.str                                   0x08002d82   Data          18  main.o(.rodata.str1.1)
+    .L.str                                   0x08002d94   Data           7  retarget_io.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08002d94   Section        0  retarget_io.o(.rodata.str1.1)
+    .L.str.2                                 0x08002d9b   Data           8  retarget_io.o(.rodata.str1.1)
+    .L.str.1                                 0x08002da3   Data           8  retarget_io.o(.rodata.str1.1)
+    locale$$data                             0x08002dcc   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x08002dd0   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x08002dd8   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x08002de4   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x08002de6   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x08002de7   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x08002de8   Data           0  lc_numeric_c.o(locale$$data)
+    locale$$data                             0x08002de8   Section      272  lc_ctype_c.o(locale$$data)
+    __lcctype_c_name                         0x08002dec   Data           2  lc_ctype_c.o(locale$$data)
+    __lcctype_c_start                        0x08002df4   Data           0  lc_ctype_c.o(locale$$data)
+    __lcctype_c_end                          0x08002ef8   Data           0  lc_ctype_c.o(locale$$data)
     .data                                    0x20000000   Section        4  stdio_streams.o(.data)
     .data                                    0x20000004   Section        4  stdio_streams.o(.data)
     .data                                    0x20000008   Section        4  stdio_streams.o(.data)
@@ -1341,34 +1341,34 @@ Image Symbol Table
     configClock                              0x080021b5   Thumb Code   188  utils.o(.text.configClock)
     configUSART2                             0x08002271   Thumb Code   192  utils.o(.text.configUSART2)
     main                                     0x08002331   Thumb Code    76  main.o(.text.main)
-    stdout_putchar                           0x08002399   Thumb Code    42  utils.o(.text.stdout_putchar)
-    ttywrch                                  0x080023c5   Thumb Code    16  utils.o(.text.ttywrch)
-    _btod_d2e                                0x080023d5   Thumb Code    62  btod.o(CL$$btod_d2e)
-    _d2e_denorm_low                          0x08002413   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
-    _d2e_norm_op1                            0x08002459   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
-    __btod_div_common                        0x080024b9   Thumb Code   696  btod.o(CL$$btod_div_common)
-    _e2e                                     0x080027f1   Thumb Code   220  btod.o(CL$$btod_e2e)
-    _btod_ediv                               0x080028cd   Thumb Code    42  btod.o(CL$$btod_ediv)
-    _btod_emul                               0x080028f7   Thumb Code    42  btod.o(CL$$btod_emul)
-    __btod_mult_common                       0x08002921   Thumb Code   580  btod.o(CL$$btod_mult_common)
-    __ARM_fpclassify                         0x08002b65   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
-    _is_digit                                0x08002b95   Thumb Code    14  __printf_wp.o(i._is_digit)
-    fputc                                    0x08002ba3   Thumb Code    26  fputc.o(i.fputc)
-    _get_lc_numeric                          0x08002bbd   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    _get_lc_ctype                            0x08002be9   Thumb Code    44  lc_ctype_c.o(locale$$code)
-    _fp_init                                 0x08002c15   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08002c2d   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08002c2d   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    _printf_fp_dec                           0x08002c2f   Thumb Code     4  printf1.o(x$fpl$printf1)
-    _printf_fp_hex                           0x08002c33   Thumb Code     4  printf2.o(x$fpl$printf2)
-    __I$use$fp                               0x08002c36   Number         0  usenofp.o(x$fpl$usenofp)
-    AHBPrescTable                            0x08002d34   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
-    __stderr_name                            0x08002d44   Data           8  retarget_io.o(.rodata.__stderr_name)
-    __stdin_name                             0x08002d4c   Data           7  retarget_io.o(.rodata.__stdin_name)
-    __stdout_name                            0x08002d53   Data           8  retarget_io.o(.rodata.__stdout_name)
-    Region$$Table$$Base                      0x08002da0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002dc0   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x08002de9   Data           0  lc_ctype_c.o(locale$$data)
+    stdout_putchar                           0x080023a5   Thumb Code    42  utils.o(.text.stdout_putchar)
+    ttywrch                                  0x080023d1   Thumb Code    16  utils.o(.text.ttywrch)
+    _btod_d2e                                0x080023e1   Thumb Code    62  btod.o(CL$$btod_d2e)
+    _d2e_denorm_low                          0x0800241f   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
+    _d2e_norm_op1                            0x08002465   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
+    __btod_div_common                        0x080024c5   Thumb Code   696  btod.o(CL$$btod_div_common)
+    _e2e                                     0x080027fd   Thumb Code   220  btod.o(CL$$btod_e2e)
+    _btod_ediv                               0x080028d9   Thumb Code    42  btod.o(CL$$btod_ediv)
+    _btod_emul                               0x08002903   Thumb Code    42  btod.o(CL$$btod_emul)
+    __btod_mult_common                       0x0800292d   Thumb Code   580  btod.o(CL$$btod_mult_common)
+    __ARM_fpclassify                         0x08002b71   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
+    _is_digit                                0x08002ba1   Thumb Code    14  __printf_wp.o(i._is_digit)
+    fputc                                    0x08002baf   Thumb Code    26  fputc.o(i.fputc)
+    _get_lc_numeric                          0x08002bc9   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    _get_lc_ctype                            0x08002bf5   Thumb Code    44  lc_ctype_c.o(locale$$code)
+    _fp_init                                 0x08002c21   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08002c39   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08002c39   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    _printf_fp_dec                           0x08002c3b   Thumb Code     4  printf1.o(x$fpl$printf1)
+    _printf_fp_hex                           0x08002c3f   Thumb Code     4  printf2.o(x$fpl$printf2)
+    __I$use$fp                               0x08002c42   Number         0  usenofp.o(x$fpl$usenofp)
+    AHBPrescTable                            0x08002d40   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
+    __stderr_name                            0x08002d50   Data           8  retarget_io.o(.rodata.__stderr_name)
+    __stdin_name                             0x08002d58   Data           7  retarget_io.o(.rodata.__stdin_name)
+    __stdout_name                            0x08002d5f   Data           8  retarget_io.o(.rodata.__stdout_name)
+    Region$$Table$$Base                      0x08002dac   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002dcc   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x08002df5   Data           0  lc_ctype_c.o(locale$$data)
     __aeabi_stdin                            0x20000000   Data           4  stdio_streams.o(.data)
     __aeabi_stdout                           0x20000004   Data           4  stdio_streams.o(.data)
     __aeabi_stderr                           0x20000008   Data           4  stdio_streams.o(.data)
@@ -1387,9 +1387,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002f60, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002f68, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002eec, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002ef8, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1555,61 +1555,61 @@ Memory Map of the image
     0x080021b4   0x080021b4   0x000000bc   Code   RO           34    .text.configClock   utils.o
     0x08002270   0x08002270   0x000000c0   Code   RO           36    .text.configUSART2  utils.o
     0x08002330   0x08002330   0x0000004c   Code   RO            2    .text.main          main.o
-    0x0800237c   0x0800237c   0x0000001c   Code   RO            4    .text.square        main.o
-    0x08002398   0x08002398   0x0000002a   Code   RO           32    .text.stdout_putchar  utils.o
-    0x080023c2   0x080023c2   0x00000002   PAD
-    0x080023c4   0x080023c4   0x00000010   Code   RO           30    .text.ttywrch       utils.o
-    0x080023d4   0x080023d4   0x0000003e   Code   RO          337    CL$$btod_d2e        c_w.l(btod.o)
-    0x08002412   0x08002412   0x00000046   Code   RO          339    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
-    0x08002458   0x08002458   0x00000060   Code   RO          338    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
-    0x080024b8   0x080024b8   0x00000338   Code   RO          347    CL$$btod_div_common  c_w.l(btod.o)
-    0x080027f0   0x080027f0   0x000000dc   Code   RO          344    CL$$btod_e2e        c_w.l(btod.o)
-    0x080028cc   0x080028cc   0x0000002a   Code   RO          341    CL$$btod_ediv       c_w.l(btod.o)
-    0x080028f6   0x080028f6   0x0000002a   Code   RO          340    CL$$btod_emul       c_w.l(btod.o)
-    0x08002920   0x08002920   0x00000244   Code   RO          346    CL$$btod_mult_common  c_w.l(btod.o)
-    0x08002b64   0x08002b64   0x00000030   Code   RO          457    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
-    0x08002b94   0x08002b94   0x0000000e   Code   RO          167    i._is_digit         c_w.l(__printf_wp.o)
-    0x08002ba2   0x08002ba2   0x0000001a   Code   RO          250    i.fputc             c_w.l(fputc.o)
-    0x08002bbc   0x08002bbc   0x0000002c   Code   RO          375    locale$$code        c_w.l(lc_numeric_c.o)
-    0x08002be8   0x08002be8   0x0000002c   Code   RO          504    locale$$code        c_w.l(lc_ctype_c.o)
-    0x08002c14   0x08002c14   0x0000001a   Code   RO          516    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08002c2e   0x08002c2e   0x00000004   Code   RO          206    x$fpl$printf1       fz_wm.l(printf1.o)
-    0x08002c32   0x08002c32   0x00000004   Code   RO          208    x$fpl$printf2       fz_wm.l(printf2.o)
-    0x08002c36   0x08002c36   0x00000000   Code   RO          456    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x08002c36   0x08002c36   0x00000002   PAD
-    0x08002c38   0x08002c38   0x00000008   Data   RO          126    .constdata          c_w.l(_printf_wctomb.o)
-    0x08002c40   0x08002c40   0x00000028   Data   RO          155    .constdata          c_w.l(_printf_hex_int_ll_ptr.o)
-    0x08002c68   0x08002c68   0x00000011   Data   RO          175    .constdata          c_w.l(__printf_flags_ss_wp.o)
-    0x08002c79   0x08002c79   0x00000026   Data   RO          238    .constdata          c_w.l(_printf_fp_hex.o)
-    0x08002c9f   0x08002c9f   0x00000001   PAD
-    0x08002ca0   0x08002ca0   0x00000094   Data   RO          335    .constdata          c_w.l(bigflt0.o)
-    0x08002d34   0x08002d34   0x00000010   Data   RO           88    .rodata.AHBPrescTable  system_stm32f4xx.o
-    0x08002d44   0x08002d44   0x00000008   Data   RO           65    .rodata.__stderr_name  retarget_io.o
-    0x08002d4c   0x08002d4c   0x00000007   Data   RO           63    .rodata.__stdin_name  retarget_io.o
-    0x08002d53   0x08002d53   0x00000008   Data   RO           64    .rodata.__stdout_name  retarget_io.o
-    0x08002d5b   0x08002d5b   0x0000002c   Data   RO            6    .rodata.str1.1      main.o
-    0x08002d87   0x08002d87   0x00000017   Data   RO           66    .rodata.str1.1      retarget_io.o
-    0x08002d9e   0x08002d9e   0x00000002   PAD
-    0x08002da0   0x08002da0   0x00000020   Data   RO          601    Region$$Table       anon$$obj.o
-    0x08002dc0   0x08002dc0   0x0000001c   Data   RO          374    locale$$data        c_w.l(lc_numeric_c.o)
-    0x08002ddc   0x08002ddc   0x00000110   Data   RO          503    locale$$data        c_w.l(lc_ctype_c.o)
+    0x0800237c   0x0800237c   0x00000028   Code   RO            4    .text.square        main.o
+    0x080023a4   0x080023a4   0x0000002a   Code   RO           32    .text.stdout_putchar  utils.o
+    0x080023ce   0x080023ce   0x00000002   PAD
+    0x080023d0   0x080023d0   0x00000010   Code   RO           30    .text.ttywrch       utils.o
+    0x080023e0   0x080023e0   0x0000003e   Code   RO          337    CL$$btod_d2e        c_w.l(btod.o)
+    0x0800241e   0x0800241e   0x00000046   Code   RO          339    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
+    0x08002464   0x08002464   0x00000060   Code   RO          338    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
+    0x080024c4   0x080024c4   0x00000338   Code   RO          347    CL$$btod_div_common  c_w.l(btod.o)
+    0x080027fc   0x080027fc   0x000000dc   Code   RO          344    CL$$btod_e2e        c_w.l(btod.o)
+    0x080028d8   0x080028d8   0x0000002a   Code   RO          341    CL$$btod_ediv       c_w.l(btod.o)
+    0x08002902   0x08002902   0x0000002a   Code   RO          340    CL$$btod_emul       c_w.l(btod.o)
+    0x0800292c   0x0800292c   0x00000244   Code   RO          346    CL$$btod_mult_common  c_w.l(btod.o)
+    0x08002b70   0x08002b70   0x00000030   Code   RO          457    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
+    0x08002ba0   0x08002ba0   0x0000000e   Code   RO          167    i._is_digit         c_w.l(__printf_wp.o)
+    0x08002bae   0x08002bae   0x0000001a   Code   RO          250    i.fputc             c_w.l(fputc.o)
+    0x08002bc8   0x08002bc8   0x0000002c   Code   RO          375    locale$$code        c_w.l(lc_numeric_c.o)
+    0x08002bf4   0x08002bf4   0x0000002c   Code   RO          504    locale$$code        c_w.l(lc_ctype_c.o)
+    0x08002c20   0x08002c20   0x0000001a   Code   RO          516    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08002c3a   0x08002c3a   0x00000004   Code   RO          206    x$fpl$printf1       fz_wm.l(printf1.o)
+    0x08002c3e   0x08002c3e   0x00000004   Code   RO          208    x$fpl$printf2       fz_wm.l(printf2.o)
+    0x08002c42   0x08002c42   0x00000000   Code   RO          456    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x08002c42   0x08002c42   0x00000002   PAD
+    0x08002c44   0x08002c44   0x00000008   Data   RO          126    .constdata          c_w.l(_printf_wctomb.o)
+    0x08002c4c   0x08002c4c   0x00000028   Data   RO          155    .constdata          c_w.l(_printf_hex_int_ll_ptr.o)
+    0x08002c74   0x08002c74   0x00000011   Data   RO          175    .constdata          c_w.l(__printf_flags_ss_wp.o)
+    0x08002c85   0x08002c85   0x00000026   Data   RO          238    .constdata          c_w.l(_printf_fp_hex.o)
+    0x08002cab   0x08002cab   0x00000001   PAD
+    0x08002cac   0x08002cac   0x00000094   Data   RO          335    .constdata          c_w.l(bigflt0.o)
+    0x08002d40   0x08002d40   0x00000010   Data   RO           88    .rodata.AHBPrescTable  system_stm32f4xx.o
+    0x08002d50   0x08002d50   0x00000008   Data   RO           65    .rodata.__stderr_name  retarget_io.o
+    0x08002d58   0x08002d58   0x00000007   Data   RO           63    .rodata.__stdin_name  retarget_io.o
+    0x08002d5f   0x08002d5f   0x00000008   Data   RO           64    .rodata.__stdout_name  retarget_io.o
+    0x08002d67   0x08002d67   0x0000002d   Data   RO            6    .rodata.str1.1      main.o
+    0x08002d94   0x08002d94   0x00000017   Data   RO           66    .rodata.str1.1      retarget_io.o
+    0x08002dab   0x08002dab   0x00000001   PAD
+    0x08002dac   0x08002dac   0x00000020   Data   RO          601    Region$$Table       anon$$obj.o
+    0x08002dcc   0x08002dcc   0x0000001c   Data   RO          374    locale$$data        c_w.l(lc_numeric_c.o)
+    0x08002de8   0x08002de8   0x00000110   Data   RO          503    locale$$data        c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002ef0, Size: 0x000007d0, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002ef8, Size: 0x000007d0, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002ef0   0x00000004   Data   RW          203    .data               c_w.l(stdio_streams.o)
-    0x20000004   0x08002ef4   0x00000004   Data   RW          204    .data               c_w.l(stdio_streams.o)
-    0x20000008   0x08002ef8   0x00000004   Data   RW          205    .data               c_w.l(stdio_streams.o)
-    0x2000000c   0x08002efc   0x00000004   Data   RW           87    .data.SystemCoreClock  system_stm32f4xx.o
-    0x20000010   0x08002f00   0x00000040   Data   RW           39    .data.configUSART2.hpre  utils.o
-    0x20000050   0x08002f40   0x00000020   Data   RW           38    .data.configUSART2.ppre1  utils.o
+    0x20000000   0x08002ef8   0x00000004   Data   RW          203    .data               c_w.l(stdio_streams.o)
+    0x20000004   0x08002efc   0x00000004   Data   RW          204    .data               c_w.l(stdio_streams.o)
+    0x20000008   0x08002f00   0x00000004   Data   RW          205    .data               c_w.l(stdio_streams.o)
+    0x2000000c   0x08002f04   0x00000004   Data   RW           87    .data.SystemCoreClock  system_stm32f4xx.o
+    0x20000010   0x08002f08   0x00000040   Data   RW           39    .data.configUSART2.hpre  utils.o
+    0x20000050   0x08002f48   0x00000020   Data   RW           38    .data.configUSART2.ppre1  utils.o
     0x20000070        -       0x00000054   Zero   RW          200    .bss                c_w.l(stdio_streams.o)
     0x200000c4        -       0x00000054   Zero   RW          201    .bss                c_w.l(stdio_streams.o)
     0x20000118        -       0x00000054   Zero   RW          202    .bss                c_w.l(stdio_streams.o)
     0x2000016c        -       0x00000060   Zero   RW          460    .bss                c_w.l(libspace.o)
-    0x200001cc   0x08002f60   0x00000004   PAD
+    0x200001cc   0x08002f68   0x00000004   PAD
     0x200001d0        -       0x00000200   Zero   RW           74    HEAP                startup_stm32f407xx.o
     0x200003d0        -       0x00000400   Zero   RW           73    STACK               startup_stm32f407xx.o
 
@@ -1622,16 +1622,16 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        148          0          0          0          0       1146   hardfault.o
-       104          0         44          0          0        600   main.o
-       566          0         46          0          0       2398   retarget_io.o
+       116          0         45          0          0        630   main.o
+       566          0         46          0          0       2425   retarget_io.o
         64         26        392          0       1536        908   startup_stm32f407xx.o
        320          0         16          4          0       2627   system_stm32f4xx.o
-       446          0          0         96          0       2937   utils.o
+       446          0          0         96          0       2964   utils.o
 
     ----------------------------------------------------------------------
-      1664         26        532        100       1536      10616   Object Totals
+      1676         26        532        100       1536      10700   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        16          0          2          0          0          0   (incl. Padding)
+        16          0          1          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1764,15 +1764,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10928        458       1084        112       1888      13540   Grand Totals
-     10928        458       1084        112       1888      13540   ELF Image Totals
-     10928        458       1084        112          0          0   ROM Totals
+     10940        458       1084        112       1888      13624   Grand Totals
+     10940        458       1084        112       1888      13624   ELF Image Totals
+     10940        458       1084        112          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                12012 (  11.73kB)
+    Total RO  Size (Code + RO Data)                12024 (  11.74kB)
     Total RW  Size (RW Data + ZI Data)              2000 (   1.95kB)
-    Total ROM Size (Code + RO Data + RW Data)      12124 (  11.84kB)
+    Total ROM Size (Code + RO Data + RW Data)      12136 (  11.85kB)
 
 ==============================================================================
 

@@ -3,7 +3,7 @@
 
 
 static void square(long long *i) {
-	printf("after: %lld\n", *i);
+	printf("after: %lld\n", (*i)*(*i));
 }
 
 int main(void) {
@@ -15,7 +15,7 @@ int main(void) {
 	
 	printf("i = %p, i+1 = %p\n", (void *) &i, (void *) ((&i)+1));
 	
-	printf("before: %lld", i);
+	printf("before: %lld\n", i);
 	
 	square(&i);
 	
