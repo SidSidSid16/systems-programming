@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>static</OutputName>
+          <OutputName>mult</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>5</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -383,14 +383,9 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>count.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\count.c</FilePath>
+              <FileName>main.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\asm\main.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -457,6 +452,11 @@
               <FileName>utils.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\Utils\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>entrypoint.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\entrypoint.c</FilePath>
             </File>
           </Files>
         </Group>
