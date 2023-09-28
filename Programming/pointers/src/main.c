@@ -3,7 +3,7 @@
 
 
 static void square(long long *i) {
-	
+	printf("after: %lld\n", *i);
 }
 
 int main(void) {
@@ -11,9 +11,13 @@ int main(void) {
 	configClock();
 	configUSART2(38400);
 	
-	int i = 3;
+	long long i = 3;
 	
 	printf("i = %p, i+1 = %p\n", (void *) &i, (void *) ((&i)+1));
+	
+	printf("before: %lld", i);
+	
+	square(&i);
 	
 	while(1);
 
