@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 static void count(void) {
-	unsigned int counter = 0;
+	static unsigned int counter = 0;
 	counter++;
 	printf("count() called, value = %d\r\n", counter);
 }
