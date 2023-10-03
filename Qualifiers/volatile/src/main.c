@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #define LEDs		(*(unsigned char *)(0x40020C15))
-#define buttons	(*(unsigned char *)(0x40021011))
+#define buttons	(*(unsigned char volatile *)(0x40021011))
 
 int main(void) {
 	
