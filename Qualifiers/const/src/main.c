@@ -1,7 +1,7 @@
 #include "Utils/utils.h"
 #include <stdio.h>
 
-static void copyString(char *source, char *dest) {
+static void copyString(char const *source, char *dest) {
 	// Loop until a termination character is found
 	while (*source != 0) {
 		// Copy a character
@@ -19,7 +19,7 @@ int main(void) {
 	configUSART2(38400);
 	
 	char buffer[16];
-	char *message = "Hello, world!";
+	char const *message = "Hello, world!";
 	
 	copyString(message, buffer);
 	
