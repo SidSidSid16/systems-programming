@@ -1,10 +1,11 @@
 #include "stack.h"
 
 void push(int32_t **sp, int32_t value) {
-	// Finish this!
+	**sp = value;
+	(*sp)++;
 }
 
 int32_t pop(int **sp) {
-	// Finish this!
-	return 0;
+	(*sp)--;
+	return **sp;
 }

@@ -1,5 +1,7 @@
 #include "Utils/utils.h"
 #include <stdio.h>
+#include <inttypes.h>
+#include "stack.h"
 
 int main(void) {
 	
@@ -11,5 +13,6 @@ int main(void) {
 	// Stack pointer, initially points to the first array element
 	int32_t *stack_p = stack;
 
-	// Finish this!
+	push(&stack_p, 5);
+	printf("pop: %" PRId32 "\n", pop(&stack_p));
 }
