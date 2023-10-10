@@ -12,6 +12,6 @@ typedef struct {
 
 void heap_insert(heap_t *heap, int32_t value);
 int32_t heap_extract(heap_t *heap);
-uint_fast8_t heap_isEmpty(heap_t *heap);
+uint_fast8_t heap_isEmpty (heap_t *heap);
 
 #endif /* HEAP_H */

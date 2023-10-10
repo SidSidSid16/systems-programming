@@ -1,11 +1,31 @@
 #include "heap.h"
 
 static void heap_up(heap_t *heap) {
-	// Write me!
+	uint32_t childNode = heap->size;
+	while (childNode > 1) {
+		uint32_t parentNode = childNode / 2;
+		if (heap->store[parentNode - 1] > heap->store[childNode - 1]) {
+			int32_t parent_temp = heap->store[parentNode - 1];
+			heap->store[parentNode - 1] = heap->store[childNode - 1];
+			heap->store[childNode - 1] = parent_temp;
+		}
+		childNode = parentNode;
+	}
 }
 
 static void heap_down(heap_t *heap) {
-	// Write me!
+	uint32_t parentNode = 1;
+	uint32_t childNode = parentNode * 2;
+	while (parentNode < heap->size) {
+		if (heap->store[parentNode - 1] > heap->store[childNode - 1]) {
+			int32_t parent_temp = heap->store[parentNode - 1];
+			heap->store[parentNode - 1] = heap->store[childNode - 1];
+			heap->store[childNode - 1] = parent_temp;
+			parentNode = childNode;
+			childNode = parentNode * 2;
+		}
+		childNode++;
+	}
 }
 
 void heap_insert(heap_t *heap, int32_t value) {
