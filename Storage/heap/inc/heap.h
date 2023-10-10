@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 typedef struct {
-	 * const store;
+	int32_t * const store;
 	uint32_t size;
 } heap_t;
 

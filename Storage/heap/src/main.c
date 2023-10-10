@@ -21,19 +21,19 @@ int main(void) {
 	heap_insert(&heap, 7);
 	heap_insert(&heap, 1);
 	heap_insert(&heap, 4);
-//	heap_insert(&heap, 1);
-//	heap_insert(&heap, 3);
-//	heap_insert(&heap, 2);
-//	heap_insert(&heap, 8);
-//	heap_insert(&heap, 3);
-//	heap_insert(&heap, 2);
-//	heap_insert(&heap, 1);
-//	heap_insert(&heap, 2);
-//	heap_insert(&heap, 3);
-//	heap_insert(&heap, 7);
-//	heap_insert(&heap, 6);
-//	heap_insert(&heap, 6);
-//	heap_insert(&heap, 1);
+	heap_insert(&heap, 1);
+	heap_insert(&heap, 3);
+	heap_insert(&heap, 2);
+	heap_insert(&heap, 8);
+	heap_insert(&heap, 3);
+	heap_insert(&heap, 2);
+	heap_insert(&heap, 1);
+	heap_insert(&heap, 2);
+	heap_insert(&heap, 3);
+	heap_insert(&heap, 7);
+	heap_insert(&heap, 6);
+	heap_insert(&heap, 6);
+	heap_insert(&heap, 1);
 	printf("END FILL HEAP\r\n");
 	
 	while (!heap_isEmpty(&heap)) {

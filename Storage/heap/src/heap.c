@@ -15,20 +15,21 @@ static void heap_up(heap_t *heap) {
 
 static void heap_down(heap_t *heap) {
 	uint32_t parentNode = 1;
-	while (parentNode <= heap->size) {
-		uint32_t childNode1 = parentNode * 2;
-		uint32_t smallestChildNode;
-		if (childNode1 == heap->size) {
-			smallestChildNode = childNode1;
-		} else {
-			uint32_t childNode2 = childNode1 + 1;
+	uint32_t childNode1 = parentNode * 2;
+	uint32_t smallestChildNode;
+	while (childNode1 <= heap->size) {
+		childNode1 = parentNode * 2;
+		uint32_t childNode2 = childNode1 + 1;
+		if (childNode2 <= heap->size) {
 			if (heap->store[childNode1 - 1] < heap->store[childNode2 - 1]) {
 				smallestChildNode = childNode1;
 			} else {
 				smallestChildNode = childNode2;
 			}
+		} else {
+			smallestChildNode = childNode1;
 		}
-		if (heap->store[parentNode - 1] > heap->store[smallestChildNode - 1]) {
+		if (heap->store[smallestChildNode - 1] < heap->store[parentNode - 1]) {
 			int32_t parent_temp = heap->store[parentNode - 1];
 			heap->store[parentNode - 1] = heap->store[smallestChildNode - 1];
 			heap->store[smallestChildNode - 1] = parent_temp;
