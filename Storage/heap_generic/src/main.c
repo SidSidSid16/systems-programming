@@ -9,6 +9,12 @@ typedef struct {
 	uint32_t priority;
 } example_item_t;
 
+static int_fast8_t comparator (void * item1, void * item2) {
+	uint32_t example_item1 = ((example_item_t*)item1)->priority;
+	uint32_t example_item2 = ((example_item_t*)item2)->priority;
+	return (int_fast8_t)(example_item1 - example_item2);
+}
+
 int main(void) {
 	
 	configClock();

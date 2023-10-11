@@ -1,11 +1,42 @@
 #include "heap.h"
 
 static void heap_up(heap_t *heap) {
-	// Write me!
+	uint32_t childNode = heap->size;
+	while (childNode > 1) {
+		uint32_t parentNode = childNode / 2;
+		if (heap->comparator(heap->store[parentNode - 1], heap->store[childNode - 1]) > 0) {
+			void * parent_temp = heap->store[parentNode - 1];
+			heap->store[parentNode - 1] = heap->store[childNode - 1];
+			heap->store[childNode - 1] = parent_temp;
+		}
+		childNode = parentNode;
+	}
 }
 
 static void heap_down(heap_t *heap) {
-	// Write me!
+	uint32_t parentNode = 1;
+	uint32_t leftChildNode = parentNode * 2;
+	uint32_t smallestChildNode;
+	while (leftChildNode <= heap->size) {
+		leftChildNode = parentNode * 2;
+		uint32_t rightChildNode = leftChildNode + 1;
+		if (rightChildNode <= heap->size) {
+			if (heap->comparator(heap->store[rightChildNode - 1], heap->store[leftChildNode - 1]) > 0) {
+				smallestChildNode = leftChildNode;
+			} else {
+				smallestChildNode = rightChildNode;
+			}
+		} else {
+			smallestChildNode = leftChildNode;
+		}
+		if (heap->comparator(heap->store[parentNode - 1], heap->store[smallestChildNode - 1]) > 0) {
+			void * parent_temp = heap->store[parentNode - 1];
+			heap->store[parentNode - 1] = heap->store[smallestChildNode - 1];
+			heap->store[smallestChildNode - 1] = parent_temp;
+		}
+		parentNode = smallestChildNode;
+		leftChildNode = parentNode * 2;
+	}
 }
 
 void heap_insert(heap_t *heap, void * item) {
