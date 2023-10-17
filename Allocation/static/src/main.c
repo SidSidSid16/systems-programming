@@ -14,8 +14,8 @@ int main(void) {
 	uint_fast8_t len_b = 12;
 	
 	// Arrays
-	uint32_t a[len_a];
-	uint32_t b[len_b];
+	uint32_t * a = static_alloc(len_a * sizeof(uint32_t));
+	uint32_t * b = static_alloc(len_b * sizeof(uint32_t));
 	
 	// Fill arrays
 	for (uint_fast8_t i = 0; i < len_a; ++i) {

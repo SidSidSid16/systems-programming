@@ -18,7 +18,6 @@ static void heap_down(heap_t *heap) {
 	uint32_t leftChildNode = parentNode * 2;
 	uint32_t smallestChildNode;
 	while (leftChildNode <= heap->size) {
-		leftChildNode = parentNode * 2;
 		uint32_t rightChildNode = leftChildNode + 1;
 		if (rightChildNode <= heap->size) {
 			if (heap->comparator(heap->store[rightChildNode - 1], heap->store[leftChildNode - 1]) > 0) {
