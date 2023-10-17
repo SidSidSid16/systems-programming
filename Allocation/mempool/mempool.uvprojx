@@ -393,6 +393,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\mempool.c</FilePath>
             </File>
+            <File>
+              <FileName>static_alloc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\static_alloc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

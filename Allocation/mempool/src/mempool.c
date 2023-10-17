@@ -1,4 +1,6 @@
 #include "mempool.h"
+#include "static_alloc.h"
+#include <stdint.h>
 
 void *pool_allocate(mempool_t *pool) {
 	// Return the head of the list of blocks
@@ -18,4 +20,9 @@ void pool_deallocate(mempool_t *pool, void *block) {
 	item->next = pool->head;
 	// Overwrite the head of the pool to point to the new block being stored.
 	pool->head = item;
+}
+
+void pool_init(mempool_t *pool, size_t blocksize, size_t blocks) {
+	uint8_t *item = static_alloc(blocksize*blocks);
+	
 }

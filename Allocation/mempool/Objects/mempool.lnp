@@ -1,6 +1,7 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
 ".\objects\mempool.o"
+".\objects\static_alloc.o"
 ".\objects\hardfault.o"
 ".\objects\utils.o"
 ".\objects\retarget_io.o"

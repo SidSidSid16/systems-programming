@@ -1,6 +1,8 @@
 #ifndef MEMPOOL_H
 #define MEMPOOL_H
 
+#include <stddef.h>
+
 struct mempool_item_s {
 	struct mempool_item_s *next;
 };
@@ -14,6 +16,7 @@ typedef struct {
 
 void *pool_allocate(mempool_t *pool);
 void pool_deallocate(mempool_t *pool, void *block);
+void pool_init(mempool_t *pool, size_t blocksize, size_t blocks);
 
 #define pool_add pool_deallocate
 

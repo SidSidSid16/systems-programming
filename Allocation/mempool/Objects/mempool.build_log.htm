@@ -27,10 +27,28 @@ Project File Date:  10/17/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'c:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'STM32F407 Flash'
+src/mempool.c(24): warning: implicit declaration of function 'static_alloc' is invalid in C99 [-Wimplicit-function-declaration]
+        mempool_item_t *item = static_alloc(blocksize*blocks);
+                               ^
+src/mempool.c(24): warning: incompatible integer to pointer conversion initializing 'mempool_item_t *' (aka 'struct mempool_item_s *') with an expression of type 'int' [-Wint-conversion]
+        mempool_item_t *item = static_alloc(blocksize*blocks);
+                        ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/mempool.c(25): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+src/mempool.c(24): warning: unused variable 'item' [-Wunused-variable]
+        mempool_item_t *item = static_alloc(blocksize*blocks);
+                        ^
+src/mempool.c(23): warning: unused parameter 'pool' [-Wunused-parameter]
+void pool_init(mempool_t *pool, size_t blocksize, size_t blocks) {
+                          ^
+5 warnings generated.
 compiling mempool.c...
+compiling static_alloc.c...
+compiling main.c...
 linking...
-Program Size: Code=11328 RO-data=1300 RW-data=112 ZI-data=2048  
-".\Objects\mempool.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=11352 RO-data=1300 RW-data=112 ZI-data=2048  
+".\Objects\mempool.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
