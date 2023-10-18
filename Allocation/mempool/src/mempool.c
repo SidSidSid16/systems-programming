@@ -2,6 +2,9 @@
 #include "static_alloc.h"
 #include <stdint.h>
 
+// boundary for double-word alignment
+#define STATIC_ALLOC_ALIGNMENT 8U
+
 void *pool_allocate(mempool_t *pool) {
 	// Return the head of the list of blocks
 	// Update the head pointer
@@ -23,6 +26,19 @@ void pool_deallocate(mempool_t *pool, void *block) {
 }
 
 void pool_init(mempool_t *pool, size_t blocksize, size_t blocks) {
-	uint8_t *item = static_alloc(blocksize*blocks);
-	
+	// size_t blocksizeAligned = blocksize | (STATIC_ALLOC_ALIGNMENT - 1);
+	size_t blocksizeAligned = (blocksize + STATIC_ALLOC_ALIGNMENT - 1) & ~(STATIC_ALLOC_ALIGNMENT - 1);
+	// Allocate enough storage to hold requested blocks
+	uint8_t * storage = static_alloc(blocksizeAligned*blocks);
+	// Proceed only if static_alloc succeeds
+	if (storage) {
+		// compute the starting address of each block,
+		// then pass it to pool_add
+		for (size_t i = 0; i < blocks; i++) {
+			pool_add(pool, (storage + (i*blocksizeAligned)));
+		}
+	} else {
+		// set the head pointer to 0 if static_alloc fails
+		pool->head = 0;
+	}
 }

@@ -18,11 +18,14 @@ int main(void) {
 
 	/* Declare and intialise a memory pool */
 	static mempool_t pool = MEMPOOL_INITIALISER;
-	static packet_t poolElements[10];
+//	static packet_t poolElements[10];
 
-	for (int i = 0; i < 10; ++i) {
-		pool_add(&pool, &poolElements[i]);
-	}
+//	for (int i = 0; i < 10; ++i) {
+//		pool_add(&pool, &poolElements[i]);
+//	}
+	 
+	// pool_init(&pool, sizeof(packet_t), 10);
+	pool_init(&pool, 33, 10);
 	
 	/* Example use of the pool */
 	
