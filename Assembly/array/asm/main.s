@@ -6,7 +6,6 @@ array_end
 	AREA main,CODE
 	EXPORT asm_main
 asm_main
-	; Your code goes here
 	;MOV r0, -5
 	LDR r0, =array
 	LDR r1, =array_end
@@ -26,5 +25,3 @@ abs
 	RSBLE r3, r3, #0
 	BX lr
 	
-	ALIGN
-	END
