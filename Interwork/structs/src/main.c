@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <inttypes.h>
 #include "Utils/utils.h"
 
 #pragma pack(push)
@@ -14,11 +15,31 @@ typedef struct {
 
 #pragma pack(pop)
 
+void process(structure_t * s);
+
+static void printInteger(void * arg) {
+	int32_t * arg_int = arg;
+	printf("%" PRId32 "\r\n", *arg_int);
+}
+
 int main(void) {
 	configClock();
 	configUSART2(38400);
 
-	// Your code goes here...
+	int32_t test_ptr = 111;
+	
+	structure_t test_struct = {
+		.x = 123,
+		.y = 321,
+		.ptr = &test_ptr,
+		.callback = printInteger
+	};
+	
+	process(&test_struct);
+	
+	printf("x = %" PRId32 "\r\n", test_struct.x);
+	printf("y = %" PRId32 "\r\n", test_struct.y);
 
 	while(1);
 }
+
