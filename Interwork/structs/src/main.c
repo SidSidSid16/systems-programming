@@ -7,10 +7,10 @@
 #pragma pack(1)
 
 typedef struct {
-	int32_t x;
 	int32_t y;
-	void *ptr;
+	int32_t x;
 	void (*callback) (void *);
+	void *ptr;
 } structure_t;
 
 #pragma pack(pop)
@@ -34,8 +34,8 @@ int main(void) {
 	structure_t test_struct = {
 		.x = 123,
 		.y = 321,
-		.ptr = &test_ptr,
-		.callback = printInteger
+		.callback = printInteger,
+		.ptr = &test_ptr
 	};
 	
 	process(&test_struct);

@@ -13,14 +13,14 @@ ARM Macro Assembler    Page 1
     7 00000004 E890 00F0       LDMIA            r0, {r4-r7} ; load struct field
                                                             s into scratch regs
                                                             
-    8 00000008 4425            ADD              r5, r4, r5  ; r5 = x + y
-    9 0000000A 6045            STR              r5, [r0, #4] ; store r5 into st
+    8 00000008 442C            ADD              r4, r5, r4  ; r4 (y) = x + y
+    9 0000000A 6004            STR              r4, [r0, #0] ; store r4 into st
                                                             ruct y field
    10 0000000C         
-   11 0000000C 4630            MOV              r0, r6      ; move ptr field (r
-                                                            6) into r0 before c
+   11 0000000C 4638            MOV              r0, r7      ; move ptr field (r
+                                                            7) into r0 before c
                                                             allback BLX
-   12 0000000E 47B8            BLX              r7          ; branch to callbac
+   12 0000000E 47B0            BLX              r6          ; branch to callbac
                                                             k function
    13 00000010         
    14 00000010 E8BD 81F0       LDMFD            sp!, {r4-r8, pc}
