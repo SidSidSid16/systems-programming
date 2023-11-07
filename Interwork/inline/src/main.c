@@ -9,13 +9,16 @@ int main(void) {
 
 	uint32_t x=3, y=5, z=0;
   __asm volatile (
-    "ADD %[output], %[input], %[input], LSL #3\n\t" /* x*9 */
-    "ADD %[output], %[output], %[input], LSL #2" /* +(x*4) */
-    : [output] "=&r" (y)
-    : [input] "r" (x)
+    "ADD %[intermediate], %[input], %[input], LSL #3\n\t"							/* z = x*9 */
+    "ADD %[intermediate], %[intermediate], %[input], LSL #2\n\t" 			/* z = z +(x*4) = 13x */
+		"ADD %[output], %[output], %[intermediate]\n\t" 									/* z = z +(x*4) = 13x */
+    : [output] "+&r" (y)
+    : [input] "r" (x), [intermediate] "r" (z)
 	);
 
+	
 	printf("z = %" PRIu32 "\n", z);
+	printf("y = %" PRIu32 "\n", y);
 
 	while(1);
 }
