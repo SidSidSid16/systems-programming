@@ -15,5 +15,5 @@ int main(void) {
 	// Then try to overwrite the link register here so that test() is run
 	
 	uint32_t * ptr = array;
-	*(ptr + 11) = (uint32_t) test;
+	*(ptr + 11) = (uint32_t) &test;
 }
