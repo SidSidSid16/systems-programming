@@ -36,7 +36,14 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 }
 
 static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
-	/* Not implemented yet */
+	if (task->next == task) {
+		list->head = 0;
+		return;
+	} else if (list->head == task) {
+		list->head = task->next;
+	}
+	task->next->prev = task->prev;
+	task->prev->next = task->next;
 }
 
 /* Round-robin scheduler */
