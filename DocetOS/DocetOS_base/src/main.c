@@ -2,8 +2,11 @@
 #include "Utils/utils.h"
 #include <stdio.h>
 
+#include "Mode_Utils/mode_utils.h"
+
 static void task1(void const *const args) {
 	(void) args;
+	reportState();
 	for (uint_fast16_t i = 0; i < 1000; ++i) {
 		printf("AAAAAAAA");
 	}
@@ -51,6 +54,9 @@ int main(void) {
 	OS_addTask(&TCB2);
 	OS_addTask(&TCB3);
 	
+	reportState();
+	
 	/* Start the OS */
 	OS_start();
+	
 }

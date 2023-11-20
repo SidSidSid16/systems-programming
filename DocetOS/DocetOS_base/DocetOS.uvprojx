@@ -426,6 +426,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Mode_Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>mode_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Mode_Utils\mode_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>mode_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\Mode_Utils\mode_utils.h</FilePath>
+            </File>
+            <File>
+              <FileName>mode_utils_asm.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\Mode_Utils\mode_utils_asm.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
