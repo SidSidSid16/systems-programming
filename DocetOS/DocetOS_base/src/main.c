@@ -6,15 +6,19 @@
 
 static void task1(void const *const args) {
 	(void) args;
-	reportState();
+	//reportState();
 	for (uint_fast16_t i = 0; i < 1000; ++i) {
 		printf("AAAAAAAA");
+		if (i == 800) {
+			printf("Received %d\r\n", reportState_SVC(3));
+		}
 	}
 }
 
 __attribute__((noreturn))
 static void task2(void const *const args) {
 	(void) args;
+	// reportState_yield();
 	while (1) {
 		printf("BBBBBBBB");
 	}
@@ -54,7 +58,7 @@ int main(void) {
 	OS_addTask(&TCB2);
 	OS_addTask(&TCB3);
 	
-	reportState();
+	//reportState();
 	
 	/* Start the OS */
 	OS_start();
