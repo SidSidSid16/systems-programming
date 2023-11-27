@@ -7,7 +7,6 @@
 
 #include <string.h>
 
-
 /* This is an implementation of an extremely simple round-robin scheduler.
 
    A task list structure is declared.  Tasks are added to the list to create a circular buffer.
@@ -48,23 +47,26 @@ static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 
 /* Round-robin scheduler */
 OS_TCB_t const * _OS_schedule(void) {
+	// check if there are any scheduled tasks, return idle task if there are none
 	if (task_list.head) {
-		// We only want to return a task if it's not asleep or if it's finished sleeping.
-		// Passing conditions for if statement:
-		//	if the TASK_STATE_SLEEP bit is high and the OS elapsed ticks is more than the sleep duration
-		//		or
-		//	if the TASK_STATE_SLEEP bit is high
-		if (((task_list.head->state & TASK_STATE_SLEEP) && (*(uint32_t *)(task_list.head->data)) < OS_elapsedTicks()) || !(task_list.head->state & TASK_STATE_SLEEP)) {
-			// clear the sleep bit in state
-			task_list.head->state &= ~TASK_STATE_SLEEP;
-			// clear the data field since task is no longer needed
-			task_list.head->data = NULL;
+		// cache the head task item on entry to run the check to see if we loop over the round robin
+		OS_TCB_t * headOnEntry = task_list.head;
+		do {
+			// move the head over by one in the scheduler
 			task_list.head = task_list.head->next;
-			task_list.head->state &= ~TASK_STATE_YIELD;
-			return task_list.head;
+			// check if the task is not sleeping with the wake time in the future
+			if (!((task_list.head->state & TASK_STATE_SLEEP) && *(uint32_t *)task_list.head->data > OS_elapsedTicks())) {
+				// this task can be returned, reset sleep flag if set to 1, and reset yield flag
+				task_list.head->state &= ~TASK_STATE_SLEEP;
+				task_list.head->state &= ~TASK_STATE_YIELD;
+				return task_list.head;
+			}
 		}
+		// do-while runs until the round robin has been looped over completely
+		while (headOnEntry != task_list.head);
+		// once looped over completely, return the idle task
+		return _OS_idleTCB_p;
 	}
-	// No tasks are runnable, so return the idle task
 	return _OS_idleTCB_p;
 }
 
