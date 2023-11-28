@@ -26,6 +26,10 @@ static _OS_tasklist_t task_list = {.head = 0};
 static _OS_tasklist_t wait_list = {.head = 0};
 static _OS_tasklist_t pending_list = {.head = 0};
 
+// Notification counter to act as a check code, this is used to
+// make sure that the operation can be run
+static uint32_t notificationCounter = 0;
+
 static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
 		task->next = task;
@@ -97,7 +101,13 @@ static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	return oldHead;
 }
 
+uint32_t OS_notificationCount_get() {
+	return notificationCounter;
+}
+
 void OS_notifyAll() {
+	// increment the notification counter
+	notificationCounter++;
 	// logic is carried out until the wait list is empty
 	while (wait_list.head) {
 		// all tasks in the wait list are popped then pushed into the pending list
@@ -183,13 +193,19 @@ void _OS_taskExit_delegate(void) {
 /* SVC handler that calls list_remove() to remove the current task from the round robin
    and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
    to invoke a context switch */
-void _OS_wait_delegate(void) {
-	// get the current task and cache it
-	OS_TCB_t * currentTask = task_list.head;
-	// remove this task from the round robin
-	list_remove(&task_list, currentTask);
-	// add the current task to the wait list
-	list_push_sl(&wait_list, currentTask);
-	// set PendSV bit to invoke context switch
-	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
+void _OS_wait_delegate(void * const stack) {
+	// the notifcation counter check code is passed in via the stacked r0
+	// we can extract it by type casting to _OS_SVC_StackFrame_t first.
+	uint32_t checkCode = ((_OS_SVC_StackFrame_t *) stack)->r0;
+	// only continue if the check code matches the global notification counter
+	if (checkCode == notificationCounter) {
+		// get the current task and cache it
+		OS_TCB_t * currentTask = task_list.head;
+		// remove this task from the round robin
+		list_remove(&task_list, currentTask);
+		// add the current task to the wait list
+		list_push_sl(&wait_list, currentTask);
+		// set PendSV bit to invoke context switch
+		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
+	}
 }

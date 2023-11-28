@@ -44,6 +44,8 @@ void OS_addTask(OS_TCB_t * const tcb);
 
 void OS_notifyAll(void);
 
+uint32_t OS_notificationCount_get(void);
+
 /*========================*/
 /*      INTERNAL API      */
 /*========================*/
@@ -58,7 +60,7 @@ typedef struct {
 
 /* SVC delegates */
 void _OS_taskExit_delegate(void);
-void _OS_wait_delegate(void);
+void _OS_wait_delegate(void * const stack);
 
 /* Constants that define bits in a thread's 'state' field. */
 #define TASK_STATE_YIELD    (1UL << 0) // Bit zero is the 'yield' flag

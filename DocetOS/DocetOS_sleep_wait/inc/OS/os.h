@@ -42,7 +42,7 @@ uint32_t OS_elapsedTicks(void);
 
 /* SVC delegate to yield the current task */
 #define OS_yield() _svc_0(OS_SVC_YIELD)
-#define OS_wait() _svc_0(OS_SVC_WAIT)
+#define OS_wait(x) _svc_1(x, OS_SVC_WAIT)
 
 /*========================*/
 /*      INTERNAL API      */
