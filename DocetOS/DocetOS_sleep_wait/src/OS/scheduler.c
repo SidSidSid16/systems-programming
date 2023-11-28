@@ -19,10 +19,12 @@
 	 OS_schedule() in this implementation.
 */
 
+// double-linked list
 static _OS_tasklist_t task_list = {.head = 0};
 
-// A singly-linked list to contain waiting tasks
+// singly-linked lists to contain waiting and pending tasks
 static _OS_tasklist_t wait_list = {.head = 0};
+static _OS_tasklist_t pending_list = {.head = 0};
 
 static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
@@ -65,40 +67,52 @@ static void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 			The 'W' at the end of STREX and LDREX signifies a word of data.*/
 	do {
 		// First LDREX the pointer to the head of the list into a pointer variable
-		OS_TCB_t *head = (OS_TCB_t *) __LDREXW ((uint32_t *)&(list->head));
+		OS_TCB_t *head = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(list->head));
 		// Set the pointer of the old head as the next field of the task to add
 		task->next = head;
 	}
 	// Repeat do-logic until STREX returns a '0' signifying a successful store.
-	while (__STREXW ((uint32_t) task, (uint32_t *)&(list->head)));
+	while (__STREXW ((uint32_t) task, (uint32_t volatile *)&(list->head)));
 }
 
 static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	// cache the oldHead (current head of the list that needs popping) and newHead
 	// (the item that needs to become the head after the old head is popped)
 	OS_TCB_t *oldHead = NULL;
-	OS_TCB_t *newHead = NULL;
 	do {
 		// get the current head of the list
-		oldHead = (OS_TCB_t *) __LDREXW ((uint32_t *)&(list->head));
+		oldHead = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(list->head));
 		// if the list is empty, we want to break out of the do-while to return NULL
 		if (!oldHead) {
+			// if we break early, we need to clear the flag since the STREX will not run
+			__CLREX();
 			break;
 		}
-		// if the list does have a head, we can set it to point to the next field of the
-		// head.
-		newHead = oldHead->next;
-		// clear the next field of the old head so that there aren't any dangling pointers
-		oldHead->next = NULL;
 	}
 	// do-logic is iterated until the new head is successfully stored as the list head.
-	while (__STREXW ((uint32_t) newHead, (uint32_t *)&(list->head)));
+	while (__STREXW ((uint32_t) oldHead->next, (uint32_t volatile *)&(list->head)));
+	// clear the next field of the old head so that there aren't any dangling pointers
+	oldHead->next = NULL;
 	// we can return the popped task that was once the head of the list
 	return oldHead;
 }
 
+void OS_notifyAll() {
+	// logic is carried out until the wait list is empty
+	while (wait_list.head) {
+		// all tasks in the wait list are popped then pushed into the pending list
+		list_push_sl(&pending_list, list_pop_sl(&wait_list));
+	}
+}
+
 /* Round-robin scheduler */
 OS_TCB_t const * _OS_schedule(void) {
+	// remove all pending tasks until that list is empty and place them into the round-robin
+	while (pending_list.head) {
+		// since task_list is doubly-linked, we use list add, pending_list is popped with the
+		// singly-linked (sl) pop function
+		list_add(&task_list, list_pop_sl(&pending_list));
+	}
 	// check if there are any scheduled tasks, return idle task if there are none
 	if (task_list.head) {
 		// cache the head task item on entry to run the check to see if we loop over the round robin

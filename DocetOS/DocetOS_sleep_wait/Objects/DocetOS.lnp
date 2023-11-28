@@ -4,6 +4,7 @@
 ".\objects\os.o"
 ".\objects\os_asm.o"
 ".\objects\sleep.o"
+".\objects\mutex.o"
 ".\objects\hardfault.o"
 ".\objects\utils.o"
 ".\objects\retarget_io.o"
