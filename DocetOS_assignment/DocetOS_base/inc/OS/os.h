@@ -39,7 +39,22 @@ uint32_t OS_elapsedTicks(void);
 /* Scheduling functions */
 /************************/
 
-/* SVC delegate to yield the current task */
+/* SVC delegate to yield the current task:
+		The current task will be stopped so that the CPU thread can be freed up.
+		The yield flag will be set, and the task will stay in the scheduler so that
+		it can be run later.
+		
+		So the yield flag is set, then the PendSV is scheduled by triggering a software
+		interrupt.
+		
+		PendSV_Handler is run in the os_asm.s file as an interrupt. Since PendSV has the
+		lowest priority, it'll run when other more important interrupts are completed.
+		
+		PendSV_Handler is a context switch, hence, there is a push to stack at the start
+		and a pop from stack at the end for the r4 and lr. In between this, the _OS_schedule
+		function is branched to.
+		
+		_OS_schedule will the schedule the next task.*/
 #define OS_yield() _svc_0(OS_SVC_YIELD)
 
 /*========================*/

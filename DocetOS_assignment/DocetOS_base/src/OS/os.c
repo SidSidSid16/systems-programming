@@ -35,7 +35,20 @@ uint32_t OS_elapsedTicks(void) {
 	return _ticks;
 }
 
-/* IRQ handler for the system tick.  Schedules PendSV */
+/* IRQ handler for the system tick.  Schedules PendSV 
+	
+		SysTick_Handler is called by a hardware timer, it is configured in
+		_OS_enable_systick_delegate(void) at the end of this script. It is
+		triggered at (SystemCoreClock / 1000)Hz = 16000Hz.
+
+		Each time it is triggered, it will increment the total number of
+		elapsed ticks in the OS, then it'll trigger the PendSV_Handler,
+		which will branch to _OS_schedule to schedule the next task.
+
+		The way it's currently set up, each tick is 62.5 microseconds, this is
+		how long each task will have to execute completely.
+*/
+
 // Local prototype - overrides weak export but is not part of the API
 void SysTick_Handler(void) {
 	_ticks = _ticks + 1;
