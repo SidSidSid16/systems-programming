@@ -22,58 +22,25 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 C:\tmp\Systems Programming for ARM\systems-programming\DocetOS_assignment\DocetOS_base\DocetOS.uvprojx
-Project File Date:  12/03/2023
+Project File Date:  12/04/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'c:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'STM32F407 Flash'
-assembling os_asm.s...
 assembling startup_stm32f407xx.s...
-src/main.c(5): warning: unused parameter 'args' [-Wunused-parameter]
-static void task1(void const *const args) {
-                                    ^
-src/main.c(11): warning: unused parameter 'args' [-Wunused-parameter]
-static void task2(void const *const args) {
-                                    ^
-src/main.c(11): warning: function 'task2' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
-static void task2(void const *const args) {
-                                          ^
-src/main.c(28): warning: unused variable 'stack1' [-Wunused-variable]
-        static uint32_t stack1[128] __attribute__ (( aligned(8) ));
-                        ^
-src/main.c(29): warning: unused variable 'stack2' [-Wunused-variable]
-        static uint32_t stack2[128] __attribute__ (( aligned(8) ));
-                        ^
-src/main.c(30): warning: unused variable 'TCB1' [-Wunused-variable]
-        static OS_TCB_t TCB1, TCB2;
-                        ^
-src/main.c(30): warning: unused variable 'TCB2' [-Wunused-variable]
-        static OS_TCB_t TCB1, TCB2;
-                              ^
-src/main.c(5): warning: unused function 'task1' [-Wunused-function]
-static void task1(void const *const args) {
-            ^
-src/main.c(11): warning: unused function 'task2' [-Wunused-function]
-static void task2(void const *const args) {
-            ^
-9 warnings generated.
+assembling os_asm.s...
+assembling utils_asm.s...
+compiling hardfault.c...
 compiling main.c...
 compiling retarget_io.c...
-compiling hardfault.c...
+compiling mode_utils.c...
+compiling scheduler.c...
+compiling system_stm32f4xx.c...
 compiling utils.c...
 compiling os.c...
-compiling system_stm32f4xx.c...
-src/OS/scheduler.c(38): warning: unused parameter 'list' [-Wunused-parameter]
-static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
-                                        ^
-src/OS/scheduler.c(38): warning: unused parameter 'task' [-Wunused-parameter]
-static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
-                                                        ^
-2 warnings generated.
-compiling scheduler.c...
 linking...
-Program Size: Code=11360 RO-data=1056 RW-data=128 ZI-data=1960  
-".\Objects\DocetOS.axf" - 0 Error(s), 11 Warning(s).
+Program Size: Code=12168 RO-data=1184 RW-data=128 ZI-data=3552  
+".\Objects\DocetOS.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -106,20 +73,20 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:User:1.2.0
-      Source file:   Source\retarget_io.c
       Source file:   Template\stdout_USART.c
-      Source file:   Template\stdout_display.c
       Source file:   Template\stdout_user.c
+      Source file:   Template\stdout_display.c
+      Source file:   Source\retarget_io.c
 
    * Component: Keil.ARM Compiler::Compiler:I/O:TTY:User:1.2.0
       Source file:   Source\retarget_io.c
       Source file:   Template\tty_user.c
 
    * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
       Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>

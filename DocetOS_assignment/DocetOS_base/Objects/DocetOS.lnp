@@ -5,6 +5,8 @@
 ".\objects\os_asm.o"
 ".\objects\hardfault.o"
 ".\objects\utils.o"
+".\objects\mode_utils.o"
+".\objects\utils_asm.o"
 ".\objects\retarget_io.o"
 ".\objects\startup_stm32f407xx.o"
 ".\objects\system_stm32f4xx.o"

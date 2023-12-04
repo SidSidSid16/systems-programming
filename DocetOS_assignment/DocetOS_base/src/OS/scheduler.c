@@ -36,7 +36,20 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 }
 
 static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
-	/* Not implemented yet */
+	// check if task being removed is the only task in the list
+	if (task->next == task) {
+		// if it is the only task, we make the list empty
+		list->head = 0;
+		return;
+	} else if (list->head == task) {
+		// check if the task being deleted is at the head
+		// if it is then set the next task as the head
+		list->head = task->next;
+	}
+	// the prev of the next task is linked to the prev of the deletion task
+	task->next->prev = task->prev;
+	// the next of the prev task is linked to the next of the deletion task
+	task->prev->next = task->next;
 }
 
 /* Round-robin scheduler */
