@@ -7,6 +7,7 @@
 
 #include <string.h>
 
+
 /* This is an implementation of an extremely simple round-robin scheduler.
 
    A task list structure is declared.  Tasks are added to the list to create a circular buffer.
@@ -19,16 +20,20 @@
 	 OS_schedule() in this implementation.
 */
 
-// double-linked list
 static _OS_tasklist_t task_list = {.head = 0};
 
-// singly-linked lists to contain waiting and pending tasks
+/* singly-linked lists to contain waiting and pending tasks */
 static _OS_tasklist_t wait_list = {.head = 0};
 static _OS_tasklist_t pending_list = {.head = 0};
 
-// Notification counter to act as a check code, this is used to
-// make sure that the operation can be run
+/* Notification counter to act as a check code, this is used to
+	 make sure that the operation can be run */
 static uint32_t notificationCounter = 0;
+
+/* A getter for notificationCounter */
+uint32_t OS_notificationCount_get() {
+	return notificationCounter;
+}
 
 static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
@@ -44,24 +49,30 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 }
 
 static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
+	// check if task being removed is the only task in the list
 	if (task->next == task) {
+		// if it is the only task, we make the list empty
 		list->head = 0;
 		return;
 	} else if (list->head == task) {
+		// check if the task being deleted is at the head
+		// if it is then set the next task as the head
 		list->head = task->next;
 	}
+	// the prev of the next task is linked to the prev of the deletion task
 	task->next->prev = task->prev;
+	// the next of the prev task is linked to the next of the deletion task
 	task->prev->next = task->next;
 }
 
 /* Function to push an item into a singly-linked (sl) list */
 static void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 	/* We want to load the head atomically so we use LDREX/STREX: 
-		 LDREX atomically loads the value from a location and tags
-     the location simulatenously.
+		 LDREX atomically loads the value from a location and sets
+		 an exclusive flag simultaneously.
 
 		 STREX then stores the value to a memory location, only if
-	   the tag is still valid. It will fail to store to a location
+	   the flag is still valid. It will fail to store to a location
 	   if the location has been modified between the LDR and STR.
 	
 		 When STREX fails, it will return '1', the do-while loop will
@@ -79,6 +90,7 @@ static void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 	while (__STREXW ((uint32_t) task, (uint32_t volatile *)&(list->head)));
 }
 
+/* Function to pop an item from a singly-linked (sl) list */
 static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	// cache the oldHead (current head of the list that needs popping) and newHead
 	// (the item that needs to become the head after the old head is popped)
@@ -90,7 +102,7 @@ static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 		if (!oldHead) {
 			// if we break early, we need to clear the flag since the STREX will not run
 			__CLREX();
-			return NULL;
+			break;
 		}
 	}
 	// do-logic is iterated until the new head is successfully stored as the list head.
@@ -101,16 +113,15 @@ static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	return oldHead;
 }
 
-uint32_t OS_notificationCount_get() {
-	return notificationCounter;
-}
-
 void OS_notifyAll() {
 	// increment the notification counter
 	notificationCounter++;
 	// logic is carried out until the wait list is empty
+	// 	to make this thread-safe, we can initialise the head of wait list
+	// 	so that in the case that a context switch occurs after the while
+	//	condition, the logic won't try to pop and push a NULL value.
 	OS_TCB_t * item = NULL;
-	while ( (item = list_pop_sl(&wait_list)) ) {
+	while ((item = list_pop_sl(&wait_list))) {
 		// all tasks in the wait list are popped then pushed into the pending list
 		list_push_sl(&pending_list, item);
 	}
@@ -134,8 +145,7 @@ OS_TCB_t const * _OS_schedule(void) {
 			// check if the task is not sleeping with the wake time in the future
 			if (!((task_list.head->state & TASK_STATE_SLEEP) && *(uint32_t *)task_list.head->data > OS_elapsedTicks())) {
 				// this task can be returned, reset sleep flag if set to 1, and reset yield flag
-				task_list.head->state &= ~TASK_STATE_SLEEP;
-				task_list.head->state &= ~TASK_STATE_YIELD;
+				task_list.head->state &= ~(TASK_STATE_SLEEP | TASK_STATE_YIELD);
 				return task_list.head;
 			}
 		}
@@ -199,6 +209,9 @@ void _OS_wait_delegate(void * const stack) {
 	// we can extract it by type casting to _OS_SVC_StackFrame_t first.
 	uint32_t checkCode = ((_OS_SVC_StackFrame_t *) stack)->r0;
 	// only continue if the check code matches the global notification counter
+	// if the check code differs from the global notification counter, then it
+	// means that the OS_notifyAll was called, and thus the wait cannot happen
+	// since the lists differ.
 	if (checkCode == notificationCounter) {
 		// get the current task and cache it
 		OS_TCB_t * currentTask = task_list.head;
