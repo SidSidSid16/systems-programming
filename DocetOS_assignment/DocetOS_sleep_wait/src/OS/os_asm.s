@@ -16,6 +16,7 @@
     IMPORT _OS_yield_delegate
     IMPORT _OS_schedule_delegate
 	IMPORT _OS_wait_delegate
+	IMPORT OS_sleep_delegate
     
 SVC_Handler
 	; r7 contains requested handler, on entry
@@ -40,6 +41,7 @@ SVC_tableStart
     DCD _OS_yield_delegate
     DCD _OS_schedule_delegate
 	DCD _OS_wait_delegate
+	DCD OS_sleep_delegate
 SVC_tableEnd
 
     ALIGN

@@ -16,7 +16,7 @@ typedef struct s_OS_TCB_t {
 	   below), so you can use the remaining 31 bits for anything you like. */
 	uint32_t volatile state;
 	/* This is a generic field that can be used to store other things of various types. */
-	void * data;
+	uint32_t data;
 	struct s_OS_TCB_t * prev;
 	struct s_OS_TCB_t * next;
 } OS_TCB_t;
@@ -56,10 +56,6 @@ OS_TCB_t const * _OS_schedule(void);
 typedef struct {
 	OS_TCB_t * head;
 } _OS_tasklist_t;
-
-/* SVC delegates */
-void _OS_taskExit_delegate(void);
-void _OS_wait_delegate(void * const stack);
 
 /* Constants that define bits in a thread's 'state' field. */
 #define TASK_STATE_YIELD    (1UL << 0) // Bit zero is the 'yield' flag

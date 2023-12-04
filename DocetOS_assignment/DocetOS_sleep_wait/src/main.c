@@ -12,6 +12,9 @@ static OS_mutex_t mutex = OS_MUTEX_STATIC_INITIALISER;
 static void task1(void const *const args) {
 	(void) args;
 	for (uint_fast16_t i = 0; i < 1000; ++i) {
+		if (i == 50) {
+			OS_sleep(5000);
+		}
 		OS_mutex_acquire(&mutex);
 		printf("AAAAAAAA\n");
 		OS_mutex_release(&mutex);

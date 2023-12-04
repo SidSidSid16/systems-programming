@@ -20,6 +20,7 @@ enum OS_SVC_e {
 	OS_SVC_YIELD,
 	OS_SVC_SCHEDULE,
 	OS_SVC_WAIT,
+	OS_SVC_SLEEP,
 };
 
 /***************************/
@@ -58,6 +59,7 @@ uint32_t OS_elapsedTicks(void);
 		_OS_schedule will the schedule the next task.*/
 #define OS_yield() _svc_0(OS_SVC_YIELD)
 #define OS_wait(x) _svc_1(x, OS_SVC_WAIT)
+#define OS_sleep(x) _svc_1(x, OS_SVC_SLEEP)
 
 /*========================*/
 /*      INTERNAL API      */

@@ -102,13 +102,11 @@ static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 		if (!oldHead) {
 			// if we break early, we need to clear the flag since the STREX will not run
 			__CLREX();
-			break;
+			return NULL;
 		}
 	}
 	// do-logic is iterated until the new head is successfully stored as the list head.
 	while (__STREXW ((uint32_t) oldHead->next, (uint32_t volatile *)&(list->head)));
-	// clear the next field of the old head so that there aren't any dangling pointers
-	oldHead->next = NULL;
 	// we can return the popped task that was once the head of the list
 	return oldHead;
 }
@@ -143,7 +141,7 @@ OS_TCB_t const * _OS_schedule(void) {
 			// move the head over by one in the scheduler
 			task_list.head = task_list.head->next;
 			// check if the task is not sleeping with the wake time in the future
-			if (!((task_list.head->state & TASK_STATE_SLEEP) && *(uint32_t *)task_list.head->data > OS_elapsedTicks())) {
+			if (!((task_list.head->state & TASK_STATE_SLEEP) && (task_list.head->data > OS_elapsedTicks()))) {
 				// this task can be returned, reset sleep flag if set to 1, and reset yield flag
 				task_list.head->state &= ~(TASK_STATE_SLEEP | TASK_STATE_YIELD);
 				return task_list.head;
@@ -192,6 +190,7 @@ void OS_addTask(OS_TCB_t * const tcb) {
 	list_add(&task_list, tcb);
 }
 
+void _OS_taskExit_delegate(void);
 /* SVC handler that's called by _OS_task_end when a task finishes.  Removes the
    task from the scheduler and then queues PendSV to reschedule. */
 void _OS_taskExit_delegate(void) {
@@ -201,13 +200,14 @@ void _OS_taskExit_delegate(void) {
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
 
+void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack);
 /* SVC handler that calls list_remove() to remove the current task from the round robin
    and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
    to invoke a context switch */
-void _OS_wait_delegate(void * const stack) {
+void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 	// the notifcation counter check code is passed in via the stacked r0
 	// we can extract it by type casting to _OS_SVC_StackFrame_t first.
-	uint32_t checkCode = ((_OS_SVC_StackFrame_t *) stack)->r0;
+	uint32_t checkCode = stack->r0;
 	// only continue if the check code matches the global notification counter
 	// if the check code differs from the global notification counter, then it
 	// means that the OS_notifyAll was called, and thus the wait cannot happen

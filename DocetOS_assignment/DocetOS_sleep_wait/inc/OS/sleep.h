@@ -3,6 +3,4 @@
 
 #include <stdint.h>
 
-void OS_sleep(uint32_t sleepDuration);
-
 #endif /* SLEEP_H */
