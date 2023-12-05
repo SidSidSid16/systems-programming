@@ -174,6 +174,8 @@ void SysTick_Handler(void);
 void _OS_yield_delegate(void);
 void _OS_schedule_delegate(void);
 void _OS_enable_systick_delegate(void);
+void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack);
+void _OS_taskExit_delegate(void);
 
 #endif /* OS_INTERNAL */
 

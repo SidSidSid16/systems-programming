@@ -190,7 +190,6 @@ void OS_addTask(OS_TCB_t * const tcb) {
 	list_add(&task_list, tcb);
 }
 
-void _OS_taskExit_delegate(void);
 /* SVC handler that's called by _OS_task_end when a task finishes.  Removes the
    task from the scheduler and then queues PendSV to reschedule. */
 void _OS_taskExit_delegate(void) {
@@ -200,7 +199,6 @@ void _OS_taskExit_delegate(void) {
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
 
-void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack);
 /* SVC handler that calls list_remove() to remove the current task from the round robin
    and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
    to invoke a context switch */

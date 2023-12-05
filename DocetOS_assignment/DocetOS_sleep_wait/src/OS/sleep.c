@@ -1,6 +1,5 @@
-#define OS_INTERNAL
-
 #include "OS/sleep.h"
+
 #include "OS/os.h"
 #include "stm32f4xx.h"
 
