@@ -10,7 +10,7 @@ static OS_mutex_t mutex = OS_MUTEX_STATIC_INITIALISER;
 
 static void task1(void const *const args) {
 	(void) args;
-	for (uint_fast16_t i = 0; i < 1000; ++i) {
+	for (uint_fast16_t i = 0; i < 9999999; ++i) {
 		if (i == 50) {
 			OS_sleep(5000);
 		}
@@ -30,10 +30,12 @@ static void task2(void const *const args) {
 	}
 }
 
-__attribute__((noreturn))
 static void task3(void const *const args) {
 	(void) args;
-	while (1) {
+	for (uint_fast16_t i = 0; i < 9999999; ++i) {
+		if (i == 50) {
+			OS_sleep(8000);
+		}
 		OS_mutex_acquire(&mutex);
 		printf("CCCCCCCC\n");
 		OS_mutex_release(&mutex);

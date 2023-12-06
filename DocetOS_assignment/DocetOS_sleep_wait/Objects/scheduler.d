@@ -2,6 +2,7 @@
   c:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h inc\OS\os.h \
   C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
   C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
+  inc\OS\sleep.h \
   C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h \
   C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h \

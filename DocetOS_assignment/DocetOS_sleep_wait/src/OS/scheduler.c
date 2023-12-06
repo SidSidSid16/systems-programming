@@ -2,6 +2,7 @@
 
 #include "OS/scheduler.h"
 #include "OS/os.h"
+#include "OS/sleep.h"
 
 #include "stm32f4xx.h"
 
@@ -20,7 +21,7 @@
 	 OS_schedule() in this implementation.
 */
 
-static _OS_tasklist_t task_list = {.head = 0};
+_OS_tasklist_t task_list = {.head = 0};
 
 /* singly-linked lists to contain waiting and pending tasks */
 static _OS_tasklist_t wait_list = {.head = 0};
@@ -48,7 +49,7 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	}
 }
 
-static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
+void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 	// check if task being removed is the only task in the list
 	if (task->next == task) {
 		// if it is the only task, we make the list empty
@@ -127,6 +128,11 @@ void OS_notifyAll() {
 
 /* Round-robin scheduler */
 OS_TCB_t const * _OS_schedule(void) {
+	// check if there are any sleeping tasks and check if any needs to be awakened
+	while (!taskHeap_isEmpty(&sleeping_list) && sleeping_list.store[0]->data <= OS_elapsedTicks()) {
+		OS_TCB_t *taskToWake = taskHeap_extract(&sleeping_list);
+		list_add(&task_list, taskToWake);
+	}
 	// remove all pending tasks until that list is empty and place them into the round-robin
 	while (pending_list.head) {
 		// since task_list is doubly-linked, we use list add, pending_list is popped with the
@@ -135,24 +141,13 @@ OS_TCB_t const * _OS_schedule(void) {
 	}
 	// check if there are any scheduled tasks, return idle task if there are none
 	if (task_list.head) {
-		// cache the head task item on entry to run the check to see if we loop over the round robin
-		OS_TCB_t * headOnEntry = task_list.head;
-		do {
-			// move the head over by one in the scheduler
-			task_list.head = task_list.head->next;
-			// check if the task is not sleeping with the wake time in the future
-			if (!((task_list.head->state & TASK_STATE_SLEEP) && (task_list.head->data > OS_elapsedTicks()))) {
-				// this task can be returned, reset sleep flag if set to 1, and reset yield flag
-				task_list.head->state &= ~(TASK_STATE_SLEEP | TASK_STATE_YIELD);
-				return task_list.head;
-			}
-		}
-		// do-while runs until the round robin has been looped over completely
-		while (headOnEntry != task_list.head);
-		// once looped over completely, return the idle task
-		return _OS_idleTCB_p;
+		// move the head over by one in the scheduler
+		task_list.head = task_list.head->next;
+		// task can be returned, reset sleep flag if set to 1, and reset yield flag
+		task_list.head->state &= ~(TASK_STATE_SLEEP | TASK_STATE_YIELD);
+		return task_list.head;
 	}
-	// return idle task if there are not tasks scheduled
+	// return idle task if there are no tasks scheduled
 	return _OS_idleTCB_p;
 }
 

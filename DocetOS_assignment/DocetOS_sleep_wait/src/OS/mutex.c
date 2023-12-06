@@ -25,6 +25,16 @@ void OS_mutex_acquire(OS_mutex_t * mutex) {
 	} while (__STREXW ((uint32_t)currentTCB, (uint32_t *)&(mutex->task)));
 	// Once everything above is finished, we can increment the counter in the mutex
 	mutex->counter++;
+
+//	// get the current OS task and store it
+//	OS_TCB_t *currentTCB = OS_currentTCB();
+//	while (1) {
+//		// get and store the current OS notification count
+//		uint32_t currentNotificationCount = OS_notificationCount_get();
+//		// load in the mutex's TCB field
+//		OS_TCB_t * mutexTask = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(mutex->task));
+//		// 
+//	}
 }
 
 void OS_mutex_release(OS_mutex_t * mutex) {

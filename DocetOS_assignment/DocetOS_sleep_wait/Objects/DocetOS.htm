@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\DocetOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\DocetOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue Dec  5 10:59:47 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Wed Dec  6 19:41:20 2023
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -15,8 +15,8 @@ Functions with no stack information
  <LI><a href="#[cc]">__user_initial_stackheap</a>
  <LI><a href="#[6]">SVC_Handler</a>
  <LI><a href="#[8]">PendSV_Handler</a>
- <LI><a href="#[148]">_task_switch</a>
- <LI><a href="#[f8]">_task_init_switch</a>
+ <LI><a href="#[14e]">_task_switch</a>
+ <LI><a href="#[fa]">_task_init_switch</a>
 </UL>
 </UL>
 <P>
@@ -158,9 +158,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[10b]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[111]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[10c]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[112]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[6d]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -168,7 +168,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[10d]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[113]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[6e]"></a>_printf_n</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_n.o(.ARM.Collect$$_printf_percent$$00000001))
 <BR><BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_charcount
@@ -213,7 +213,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex
 </UL>
 
-<P><STRONG><a name="[10e]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
+<P><STRONG><a name="[114]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
 
 <P><STRONG><a name="[78]"></a>_printf_i</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_i.o(.ARM.Collect$$_printf_percent$$00000008))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
@@ -285,7 +285,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_ll_hex
 </UL>
 
-<P><STRONG><a name="[10f]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
+<P><STRONG><a name="[115]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
 
 <P><STRONG><a name="[88]"></a>_printf_c</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_c.o(.ARM.Collect$$_printf_percent$$00000013))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
@@ -315,13 +315,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_wstring
 </UL>
 
-<P><STRONG><a name="[110]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
+<P><STRONG><a name="[116]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
 
 <P><STRONG><a name="[9e]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
-<P><STRONG><a name="[111]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
+<P><STRONG><a name="[117]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
 
 <P><STRONG><a name="[90]"></a>__rt_lib_init_heap_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000005))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92 + Unknown Stack Size
@@ -330,19 +330,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[112]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[118]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[113]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[119]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
 <P><STRONG><a name="[92]"></a>__rt_lib_init_lc_common</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000F))
 <BR><BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 </UL>
 
-<P><STRONG><a name="[114]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[11a]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[115]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[11b]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
-<P><STRONG><a name="[116]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[11c]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 
 <P><STRONG><a name="[94]"></a>__rt_lib_init_lc_ctype_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000012))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -351,9 +351,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
 </UL>
 
-<P><STRONG><a name="[117]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[11d]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[118]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[11e]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
 <P><STRONG><a name="[95]"></a>__rt_lib_init_lc_numeric_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000016))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -362,19 +362,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[119]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[11f]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[11a]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[120]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[11b]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[121]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[11c]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[122]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[11d]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[123]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[11e]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[124]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[11f]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[125]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
 <P><STRONG><a name="[97]"></a>__rt_lib_init_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000024))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156 + Unknown Stack Size
@@ -383,23 +383,23 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
 
-<P><STRONG><a name="[120]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[126]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[121]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[127]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[122]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[128]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[123]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[129]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[124]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[12a]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[125]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[12b]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
 <P><STRONG><a name="[a3]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[126]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[12c]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
 <P><STRONG><a name="[99]"></a>__rt_lib_shutdown_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000003))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140 + Unknown Stack Size
@@ -408,24 +408,24 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_terminateio
 </UL>
 
-<P><STRONG><a name="[127]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+<P><STRONG><a name="[12d]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
 
-<P><STRONG><a name="[128]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+<P><STRONG><a name="[12e]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
 
-<P><STRONG><a name="[129]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+<P><STRONG><a name="[12f]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
 
-<P><STRONG><a name="[12a]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+<P><STRONG><a name="[130]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
 
-<P><STRONG><a name="[12b]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[131]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[12c]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[132]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[6b]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[12d]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[133]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[9b]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -438,7 +438,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[12e]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[134]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[9f]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
@@ -448,7 +448,7 @@ Global Symbols
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[12f]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[135]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[da]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -458,7 +458,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[130]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[136]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[a4]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4 + Unknown Stack Size
@@ -756,7 +756,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[131]"></a>__use_no_semihosting</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi_2.o(.text), UNUSED)
+<P><STRONG><a name="[137]"></a>__use_no_semihosting</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi_2.o(.text), UNUSED)
 
 <P><STRONG><a name="[a6]"></a>printf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
@@ -777,13 +777,13 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
 
-<P><STRONG><a name="[132]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[138]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[133]"></a>__rt_memclr_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[139]"></a>__rt_memclr_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[134]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[13a]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[ff]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
+<P><STRONG><a name="[102]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
@@ -791,15 +791,15 @@ Global Symbols
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[135]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[13b]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[136]"></a>__rt_heap_escrow</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[13c]"></a>__rt_heap_escrow</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[137]"></a>__rt_heap_expand</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[13d]"></a>__rt_heap_expand</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[138]"></a>__semihosting$guard</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[13e]"></a>__semihosting$guard</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[139]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[13f]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[a9]"></a>_printf_pre_padding</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, _printf_pad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _printf_pre_padding
@@ -1158,13 +1158,13 @@ Global Symbols
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 
-<P><STRONG><a name="[10a]"></a>__flsbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, flsbuf.o(.text))
+<P><STRONG><a name="[110]"></a>__flsbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, flsbuf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __flsbuf_byte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[13a]"></a>__flsbuf_wide</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, flsbuf.o(.text), UNUSED)
+<P><STRONG><a name="[140]"></a>__flsbuf_wide</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, flsbuf.o(.text), UNUSED)
 
 <P><STRONG><a name="[c6]"></a>setvbuf</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, setvbuf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = setvbuf
@@ -1203,7 +1203,7 @@ Global Symbols
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
 
-<P><STRONG><a name="[13b]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, fclose.o(.text), UNUSED)
+<P><STRONG><a name="[141]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, fclose.o(.text), UNUSED)
 
 <P><STRONG><a name="[a1]"></a>exit</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, exit.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -1223,13 +1223,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
 
-<P><STRONG><a name="[13c]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[142]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[cb]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[13d]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[143]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[cd]"></a>__rt_heap_descriptor</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_heap_descriptor_intlibspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
@@ -1237,13 +1237,13 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[13e]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[144]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
-<P><STRONG><a name="[13f]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[145]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
-<P><STRONG><a name="[140]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
+<P><STRONG><a name="[146]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
 
-<P><STRONG><a name="[141]"></a>_init_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
+<P><STRONG><a name="[147]"></a>_init_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
 
 <P><STRONG><a name="[dd]"></a>__Heap_Full</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, init_alloc.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
@@ -1285,7 +1285,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
 
-<P><STRONG><a name="[142]"></a>fseek</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, fseek.o(.text), UNUSED)
+<P><STRONG><a name="[148]"></a>fseek</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, fseek.o(.text), UNUSED)
 
 <P><STRONG><a name="[d0]"></a>_seterr</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stdio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
@@ -1340,9 +1340,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[143]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, maybetermalloc1.o(.text), UNUSED)
+<P><STRONG><a name="[149]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, maybetermalloc1.o(.text), UNUSED)
 
-<P><STRONG><a name="[144]"></a>__Heap_DescSize</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, h1_init.o(.text), UNUSED)
+<P><STRONG><a name="[14a]"></a>__Heap_DescSize</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, h1_init.o(.text), UNUSED)
 
 <P><STRONG><a name="[de]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, h1_extend.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __Heap_ProvideMemory &rArr; free
@@ -1361,7 +1361,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fseek
 </UL>
 
-<P><STRONG><a name="[145]"></a>ftell</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, ftell.o(.text), UNUSED)
+<P><STRONG><a name="[14b]"></a>ftell</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, ftell.o(.text), UNUSED)
 
 <P><STRONG><a name="[e5]"></a>__default_signal_display</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, defsig_general.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = __default_signal_display &rArr; _ttywrch &rArr; ttywrch &rArr; stdout_putchar
@@ -1386,9 +1386,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ftell_internal
 </UL>
 
-<P><STRONG><a name="[146]"></a>__errno$intlibspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_errno_addr_intlibspace.o(.text), UNUSED)
+<P><STRONG><a name="[14c]"></a>__errno$intlibspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_errno_addr_intlibspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[147]"></a>__rt_errno_addr$intlibspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_errno_addr_intlibspace.o(.text), UNUSED)
+<P><STRONG><a name="[14d]"></a>__rt_errno_addr$intlibspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_errno_addr_intlibspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[e8]"></a>__rt_SIGRTMEM_inner</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, defsig_rtmem_inner.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch &rArr; ttywrch &rArr; stdout_putchar
@@ -1428,7 +1428,7 @@ Global Symbols
 
 <P><STRONG><a name="[f6]"></a>OS_elapsedTicks</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os.o(.text.OS_elapsedTicks))
 <BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 
 <P><STRONG><a name="[ec]"></a>OS_initialiseTCB</STRONG> (Thumb, 166 bytes, Stack size 96 bytes, scheduler.o(.text.OS_initialiseTCB))
@@ -1477,19 +1477,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
 </UL>
 
-<P><STRONG><a name="[69]"></a>OS_sleep_delegate</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, sleep.o(.text.OS_sleep_delegate))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = OS_sleep_delegate
+<P><STRONG><a name="[69]"></a>OS_sleep_delegate</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, sleep.o(.text.OS_sleep_delegate))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = OS_sleep_delegate &rArr; taskHeap_insert &rArr; heap_up &rArr; heap_dataComparator
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
+<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskHeap_insert
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
-<P><STRONG><a name="[f7]"></a>OS_start</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, os.o(.text.OS_start))
+<P><STRONG><a name="[f9]"></a>OS_start</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, os.o(.text.OS_start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = OS_start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_task_init_switch
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_task_init_switch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1497,11 +1499,11 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, os.o(.text.SysTick_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[fb]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 302 bytes, Stack size 24 bytes, system_stm32f4xx.o(.text.SystemCoreClockUpdate))
+<P><STRONG><a name="[fd]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 302 bytes, Stack size 24 bytes, system_stm32f4xx.o(.text.SystemCoreClockUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SystemCoreClockUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
 </UL>
 
 <P><STRONG><a name="[5b]"></a>SystemInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, system_stm32f4xx.o(.text.SystemInit))
@@ -1510,16 +1512,18 @@ Global Symbols
 <P><STRONG><a name="[64]"></a>_OS_enable_systick_delegate</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, os.o(.text._OS_enable_systick_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _OS_enable_systick_delegate &rArr; SystemCoreClockUpdate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
+<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
-<P><STRONG><a name="[fc]"></a>_OS_schedule</STRONG> (Thumb, 210 bytes, Stack size 24 bytes, scheduler.o(.text._OS_schedule))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = _OS_schedule &rArr; list_pop_sl
+<P><STRONG><a name="[fe]"></a>_OS_schedule</STRONG> (Thumb, 210 bytes, Stack size 24 bytes, scheduler.o(.text._OS_schedule))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = _OS_schedule &rArr; taskHeap_extract &rArr; heap_down &rArr; heap_dataComparator
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
+<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskHeap_isEmpty
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskHeap_extract
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_pop_sl
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_add
 </UL>
@@ -1532,22 +1536,22 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>_OS_taskExit_delegate</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, scheduler.o(.text._OS_taskExit_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _OS_taskExit_delegate &rArr; list_remove
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
 <P><STRONG><a name="[60]"></a>_OS_task_end</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, os.o(.text._OS_task_end))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = _OS_task_end &rArr; _svc_0
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
+<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> scheduler.o(.text.OS_initialiseTCB)
 </UL>
 <P><STRONG><a name="[68]"></a>_OS_wait_delegate</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, scheduler.o(.text._OS_wait_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = _OS_wait_delegate &rArr; list_push_sl
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_push_sl
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
@@ -1585,7 +1589,7 @@ Global Symbols
 <P><STRONG><a name="[d5]"></a>_sys_open</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, retarget_io.o(.text._sys_open))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _sys_open &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
@@ -1599,7 +1603,7 @@ Global Symbols
 <P><STRONG><a name="[e4]"></a>_sys_write</STRONG> (Thumb, 118 bytes, Stack size 40 bytes, retarget_io.o(.text._sys_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = _sys_write &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
+<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
 </UL>
@@ -1607,23 +1611,31 @@ Global Symbols
 <P><STRONG><a name="[e7]"></a>_ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, retarget_io.o(.text._ttywrch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = _ttywrch &rArr; ttywrch &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__default_signal_display
 </UL>
 
-<P><STRONG><a name="[102]"></a>configClock</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, utils.o(.text.configClock))
+<P><STRONG><a name="[105]"></a>configClock</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, utils.o(.text.configClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = configClock &rArr; SystemCoreClockUpdate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[103]"></a>configUSART2</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, utils.o(.text.configUSART2))
+<P><STRONG><a name="[109]"></a>configUSART2</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, utils.o(.text.configUSART2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = configUSART2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[f7]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_remove
+</UL>
+<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_taskExit_delegate
 </UL>
 
 <P><STRONG><a name="[a0]"></a>main</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, main.o(.text.main))
@@ -1631,53 +1643,75 @@ Global Symbols
 <LI>Call Chain = main &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configUSART2
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configUSART2
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_initialiseTCB
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_addTask
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[100]"></a>stdout_putchar</STRONG> (Thumb, 42 bytes, Stack size 4 bytes, utils.o(.text.stdout_putchar))
+<P><STRONG><a name="[103]"></a>stdout_putchar</STRONG> (Thumb, 42 bytes, Stack size 4 bytes, utils.o(.text.stdout_putchar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
 </UL>
 
-<P><STRONG><a name="[101]"></a>ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, utils.o(.text.ttywrch))
+<P><STRONG><a name="[100]"></a>taskHeap_extract</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, sleep.o(.text.taskHeap_extract))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = taskHeap_extract &rArr; heap_down &rArr; heap_dataComparator
+</UL>
+<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_down
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+</UL>
+
+<P><STRONG><a name="[f8]"></a>taskHeap_insert</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, sleep.o(.text.taskHeap_insert))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = taskHeap_insert &rArr; heap_up &rArr; heap_dataComparator
+</UL>
+<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_up
+</UL>
+<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
+</UL>
+
+<P><STRONG><a name="[ff]"></a>taskHeap_isEmpty</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, sleep.o(.text.taskHeap_isEmpty))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = taskHeap_isEmpty
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+</UL>
+
+<P><STRONG><a name="[104]"></a>ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, utils.o(.text.ttywrch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = ttywrch &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
+<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ttywrch
 </UL>
 
 <P><STRONG><a name="[ba]"></a>_btod_d2e</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e))
-<BR><BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
+<BR><BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[106]"></a>_d2e_denorm_low</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_denorm_low))
-<BR><BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
+<P><STRONG><a name="[10c]"></a>_d2e_denorm_low</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_denorm_low))
+<BR><BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
 </UL>
 
-<P><STRONG><a name="[105]"></a>_d2e_norm_op1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_norm_op1))
-<BR><BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_denorm_low
+<P><STRONG><a name="[10b]"></a>_d2e_norm_op1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_norm_op1))
+<BR><BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_denorm_low
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_d2e
 </UL>
 
-<P><STRONG><a name="[107]"></a>__btod_div_common</STRONG> (Thumb, 696 bytes, Stack size 24 bytes, btod.o(CL$$btod_div_common))
+<P><STRONG><a name="[10d]"></a>__btod_div_common</STRONG> (Thumb, 696 bytes, Stack size 24 bytes, btod.o(CL$$btod_div_common))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __btod_div_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_ediv
 </UL>
 
-<P><STRONG><a name="[108]"></a>_e2e</STRONG> (Thumb, 220 bytes, Stack size 24 bytes, btod.o(CL$$btod_e2e))
+<P><STRONG><a name="[10e]"></a>_e2e</STRONG> (Thumb, 220 bytes, Stack size 24 bytes, btod.o(CL$$btod_e2e))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _e2e
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
@@ -1687,8 +1721,8 @@ Global Symbols
 <P><STRONG><a name="[bb]"></a>_btod_ediv</STRONG> (Thumb, 42 bytes, Stack size 28 bytes, btod.o(CL$$btod_ediv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = _btod_ediv &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
+<BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
@@ -1697,14 +1731,14 @@ Global Symbols
 <P><STRONG><a name="[bc]"></a>_btod_emul</STRONG> (Thumb, 42 bytes, Stack size 28 bytes, btod.o(CL$$btod_emul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[109]"></a>__btod_mult_common</STRONG> (Thumb, 580 bytes, Stack size 16 bytes, btod.o(CL$$btod_mult_common))
+<P><STRONG><a name="[10f]"></a>__btod_mult_common</STRONG> (Thumb, 580 bytes, Stack size 16 bytes, btod.o(CL$$btod_mult_common))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __btod_mult_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
@@ -1714,17 +1748,17 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36 + Unknown Stack Size
-<LI>Call Chain = PendSV_Handler &rArr; _OS_schedule &rArr; list_pop_sl
+<BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
+<LI>Call Chain = PendSV_Handler &rArr; _OS_schedule &rArr; taskHeap_extract &rArr; heap_down &rArr; heap_dataComparator
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[148]"></a>_task_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func), UNUSED)
+<P><STRONG><a name="[14e]"></a>_task_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func), UNUSED)
 
-<P><STRONG><a name="[f8]"></a>_task_init_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func))
-<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
+<P><STRONG><a name="[fa]"></a>_task_init_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func))
+<BR><BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
 </UL>
 
 <P><STRONG><a name="[be]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
@@ -1739,14 +1773,14 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>fputc</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, fputc.o(i.fputc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = fputc &rArr; __flsbuf_byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__flsbuf_byte
+<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__flsbuf_byte
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> _printf_char_file.o(.text)
 </UL>
 <P><STRONG><a name="[96]"></a>_get_lc_numeric</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_numeric_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_numeric &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_numeric_2
 </UL>
@@ -1754,7 +1788,7 @@ Global Symbols
 <P><STRONG><a name="[5f]"></a>_get_lc_ctype</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_ctype_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_ctype &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_ctype_2
 </UL>
@@ -1781,20 +1815,21 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[104]"></a>_svc_1</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, main.o(.text._svc_1))
+<P><STRONG><a name="[10a]"></a>_svc_1</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, main.o(.text._svc_1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _svc_1
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task3
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
 </UL>
 
-<P><STRONG><a name="[61]"></a>task1</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, main.o(.text.task1))
+<P><STRONG><a name="[61]"></a>task1</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, main.o(.text.task1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = task1 &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
@@ -1808,27 +1843,28 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[63]"></a>task3</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(.text.task3))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
+<P><STRONG><a name="[63]"></a>task3</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, main.o(.text.task3))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = task3 &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
 <P><STRONG><a name="[eb]"></a>list_add</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, scheduler.o(.text.list_add))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_add
 </UL>
-<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_addTask
 </UL>
 
 <P><STRONG><a name="[f4]"></a>list_pop_sl</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, scheduler.o(.text.list_pop_sl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = list_pop_sl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyAll
 </UL>
 
@@ -1839,32 +1875,48 @@ Local Symbols
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyAll
 </UL>
 
-<P><STRONG><a name="[fd]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_remove
-</UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_taskExit_delegate
-</UL>
-
-<P><STRONG><a name="[f9]"></a>SysTick_Config</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, os.o(.text.SysTick_Config))
+<P><STRONG><a name="[fb]"></a>SysTick_Config</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, os.o(.text.SysTick_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SysTick_Config &rArr; __NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
 </UL>
 
-<P><STRONG><a name="[fa]"></a>__NVIC_SetPriority</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, os.o(.text.__NVIC_SetPriority))
+<P><STRONG><a name="[fc]"></a>__NVIC_SetPriority</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, os.o(.text.__NVIC_SetPriority))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
 </UL>
 
-<P><STRONG><a name="[fe]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, os.o(.text._svc_0))
+<P><STRONG><a name="[101]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, os.o(.text._svc_0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = _svc_0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_task_end
+</UL>
+
+<P><STRONG><a name="[107]"></a>heap_dataComparator</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, sleep.o(.text.heap_dataComparator))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = heap_dataComparator
+</UL>
+<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_up
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_down
+</UL>
+
+<P><STRONG><a name="[106]"></a>heap_down</STRONG> (Thumb, 210 bytes, Stack size 32 bytes, sleep.o(.text.heap_down))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = heap_down &rArr; heap_dataComparator
+</UL>
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_dataComparator
+</UL>
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskHeap_extract
+</UL>
+
+<P><STRONG><a name="[108]"></a>heap_up</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, sleep.o(.text.heap_up))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = heap_up &rArr; heap_dataComparator
+</UL>
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_dataComparator
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskHeap_insert
 </UL>
 
 <P><STRONG><a name="[f3]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, mutex.o(.text._svc_0))

@@ -57,6 +57,10 @@ typedef struct {
 	OS_TCB_t * head;
 } _OS_tasklist_t;
 
+extern _OS_tasklist_t task_list;
+
+void list_remove(_OS_tasklist_t *list, OS_TCB_t *task);
+
 /* Constants that define bits in a thread's 'state' field. */
 #define TASK_STATE_YIELD    (1UL << 0) // Bit zero is the 'yield' flag
 #define TASK_STATE_SLEEP    (1UL << 1) // Bit one is the 'sleep' flag
