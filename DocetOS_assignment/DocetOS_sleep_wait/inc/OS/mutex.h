@@ -4,10 +4,12 @@
 #define OS_INTERNAL
 
 #include "OS/os.h"
+#include "OS/scheduler.h"
 
 typedef struct s_OS_mutex_t {
 	OS_TCB_t * task;
 	uint32_t counter;
+	_OS_tasklist_t * waitingTasks;
 } OS_mutex_t;
 
 #define OS_MUTEX_STATIC_INITIALISER {.task = 0, .counter = 0}

@@ -3,38 +3,26 @@
 void OS_mutex_acquire(OS_mutex_t * mutex) {
 	// get the current OS task and store it
 	OS_TCB_t *currentTCB = OS_currentTCB();
-	do {
-		// get and store the notification count
-		uint32_t notificationCount = OS_notificationCount_get();
+	while (1) {
+		// get and store the current OS notification count
+		uint32_t currentNotificationCount = OS_notificationCount_get();
 		// load in the mutex's TCB field
 		OS_TCB_t * mutexTask = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(mutex->task));
-		// check if mutex task field is unset or if set, it's the same as the current OS task
-		if (!mutexTask || (mutexTask == currentTCB)) {
-			// if there is no task in the mutex or if the mutex task is the same as the current
-			// OS task, we can loop around back to the LDREX with the continue. By using continue,
-			// we jump to the do-while condition which is the STREX function
-			continue;
+		// if the mutex's TCB field is unset, we can acquire the mutex
+		if (!mutexTask) {
+			// try to use exclusive store for TCB to get ownership of the mutex
+			if (!(__STREXW ((uint32_t)currentTCB, (uint32_t *)&(mutex->task)))) {
+				// if STREXW succeeds, then current TCB has acquired the mutex, break out of while loop
+				break;
+			}
+			// if STREXW fails, then mutex is already aquired, keep iterating the while loop
+		} else if (mutexTask != currentTCB) {
+			// if the mutex is already acquired by another task, we can send it to the wait list
+			OS_wait(currentNotificationCount);
 		}
-		// If there is a task in the mutex, and it is not the current OS task (the previoud if)
-		// statement would've caught it if this condition wasn't met), we induce an OS wait, and
-		// we can loop around back to the start (LDREX instruction) by clearing the EX flag.
-		OS_wait(notificationCount);
-		// By clearing the EX flag, we can induce the STREX to fail, this will cause the do-while
-		// to loop around back to the 'do' logic.
-		__CLREX();
-	} while (__STREXW ((uint32_t)currentTCB, (uint32_t *)&(mutex->task)));
+	}
 	// Once everything above is finished, we can increment the counter in the mutex
 	mutex->counter++;
-
-//	// get the current OS task and store it
-//	OS_TCB_t *currentTCB = OS_currentTCB();
-//	while (1) {
-//		// get and store the current OS notification count
-//		uint32_t currentNotificationCount = OS_notificationCount_get();
-//		// load in the mutex's TCB field
-//		OS_TCB_t * mutexTask = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(mutex->task));
-//		// 
-//	}
 }
 
 void OS_mutex_release(OS_mutex_t * mutex) {

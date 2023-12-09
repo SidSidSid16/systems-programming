@@ -1,7 +1,6 @@
-#include "OS/os.h"
-
-#include "Utils/utils.h"
 #include "OS/mutex.h"
+#include "OS/os.h"
+#include "Utils/utils.h"
 
 #include <stdio.h>
 
