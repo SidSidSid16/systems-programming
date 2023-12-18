@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\DocetOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\DocetOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Mon Dec 18 13:56:37 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Mon Dec 18 18:20:44 2023
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1506,10 +1506,10 @@ Global Symbols
 <P><STRONG><a name="[69]"></a>OS_sleep_delegate</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, scheduler.o(.text.OS_sleep_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OS_sleep_delegate &rArr; OS_heap_insert &rArr; heap_up
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
+<BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
@@ -1562,8 +1562,8 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>_OS_taskExit_delegate</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, scheduler.o(.text._OS_taskExit_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _OS_taskExit_delegate &rArr; list_remove
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
@@ -1654,14 +1654,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = configUSART2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[fc]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_remove
-</UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_taskExit_delegate
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
 </UL>
 
 <P><STRONG><a name="[a1]"></a>main</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, main.o(.text.main))
@@ -1894,6 +1886,14 @@ Local Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyAll
+</UL>
+
+<P><STRONG><a name="[fc]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_remove
+</UL>
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_taskExit_delegate
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
 </UL>
 
 <P><STRONG><a name="[ff]"></a>SysTick_Config</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, os.o(.text.SysTick_Config))

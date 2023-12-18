@@ -21,7 +21,8 @@
 	 OS_schedule() in this implementation.
 */
 
-_OS_tasklist_t task_list = {.head = 0};
+/* doubly-linked list to contain active tasks for scheduler */
+static _OS_tasklist_t task_list = {.head = 0};
 
 /* singly-linked lists to contain waiting and pending tasks */
 static _OS_tasklist_t wait_list = {.head = 0};
@@ -65,7 +66,7 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	}
 }
 
-void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
+static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 	// check if task being removed is the only task in the list
 	if (task->next == task) {
 		// if it is the only task, we make the list empty
