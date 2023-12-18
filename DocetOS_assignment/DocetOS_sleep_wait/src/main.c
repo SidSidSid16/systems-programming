@@ -15,7 +15,7 @@ static void example() {
 
 static void task1(void const *const args) {
 	(void) args;
-	for (uint_fast16_t i = 0; i < 9999999; ++i) {
+	for (uint_fast16_t i = 0; i < 1000; ++i) {
 		if (i == 50) {
 			OS_sleep(5000);
 		}
@@ -38,7 +38,7 @@ static void task2(void const *const args) {
 
 static void task3(void const *const args) {
 	(void) args;
-	for (uint_fast16_t i = 0; i < 9999999; ++i) {
+	for (uint_fast16_t i = 0; i < 1000; ++i) {
 		if (i == 50) {
 			OS_sleep(8000);
 		}
@@ -65,9 +65,9 @@ int main(void) {
 	static OS_TCB_t TCB1, TCB2, TCB3;
 
 	/* Initialise the TCBs using the two functions above */
-	OS_initialiseTCB(&TCB1, stack1+128, task1, NULL);
-	OS_initialiseTCB(&TCB2, stack2+128, task2, NULL);
-	OS_initialiseTCB(&TCB3, stack3+128, task3, NULL);
+	OS_initialiseTCB(&TCB1, stack1+128, task1, NULL, 1);
+	OS_initialiseTCB(&TCB2, stack2+128, task2, NULL, 3);
+	OS_initialiseTCB(&TCB3, stack3+128, task3, NULL, 2);
 	
 	/* Add the tasks to the scheduler */
 	OS_addTask(&TCB1);

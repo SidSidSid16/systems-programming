@@ -7,7 +7,14 @@
 		The heap must be initialised by specifying a memory size.
 		20 seems to be a reasonable size since this is an embedded OS and there shouldn't be too many tasks
 		running and requiring to sleep. However, this can be easily increased or decreased.*/
-#define OS_SLEEPINGHEAP_SIZE 20
+#define _OS_SLEEPINGHEAP_SIZE 20
+
+/* Defines the maximum number of priority levels: 
+		The array must be initialised by specifying a memory size. The numeric values that denote the priority
+		level follows 'priority inversion' where smaller numeric values denote higher priorities. Priority levels
+		are 1-indexed until when it is stored in the TCB field and used for array manipulation logic, where it is
+		changed to 0-indexed. */
+#define _OS_PRIORITY_LEVELS 3
 
 /*========================*/
 /*      EXTERNAL API      */
@@ -23,6 +30,9 @@ typedef struct s_OS_TCB_t {
 	uint32_t volatile state;
 	/* This is a generic field that can be used to store other things of various types. */
 	uint32_t data;
+	/* This field contains the priority level of this task. */
+	uint_fast8_t priority;
+	/* next and prev tasks fields for linked-list behaviour. */
 	struct s_OS_TCB_t * prev;
 	struct s_OS_TCB_t * next;
 } OS_TCB_t;
@@ -42,8 +52,9 @@ typedef struct s_OS_TCB_t {
      the result must be checked for alignment, and then the stack size must be added to the pointer for passing
      to this function.
    The third argument is a pointer to the function that the task should execute.
-   The fourth argument is a void pointer to data that the task should receive. */
-void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data);
+   The fourth argument is a void pointer to data that the task should receive. 
+	 The fifth argument is the priority level of this task */
+void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data, uint_fast8_t priority);
 
 void OS_addTask(OS_TCB_t * const tcb);
 

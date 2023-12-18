@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=2816,126,3266,683,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=1470,126,1920,683,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -157,23 +157,23 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>6</LineNumber>
+          <LineNumber>150</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134226730</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Systems Programming for ARM\systems-programming\DocetOS_assignment\DocetOS_sleep_wait\src\OS\sleep.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\src\OS\scheduler.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\DocetOS\src/OS/scheduler.c\150</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>20</LineNumber>
+          <LineNumber>149</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -182,7 +182,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Systems Programming for ARM\systems-programming\DocetOS_assignment\DocetOS_sleep_wait\src\OS\sleep.c</Filename>
+          <Filename>.\src\OS\scheduler.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -217,6 +217,11 @@
           <count>5</count>
           <WinNumber>1</WinNumber>
           <ItemText>currentTCB-&gt;data,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>task_list[_OS_PRIORITY_LEVELS]</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
