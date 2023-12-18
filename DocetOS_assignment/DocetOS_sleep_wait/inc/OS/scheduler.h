@@ -3,6 +3,12 @@
 
 #include <stdint.h>
 
+/* Defines the maximum number of sleeping tasks: 
+		The heap must be initialised by specifying a memory size.
+		20 seems to be a reasonable size since this is an embedded OS and there shouldn't be too many tasks
+		running and requiring to sleep. However, this can be easily increased or decreased.*/
+#define OS_SLEEPINGHEAP_SIZE 20
+
 /*========================*/
 /*      EXTERNAL API      */
 /*========================*/

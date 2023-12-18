@@ -19,6 +19,9 @@ void OS_mutex_acquire(OS_mutex_t * mutex) {
 		} else if (mutexTask != currentTCB) {
 			// if the mutex is already acquired by another task, we can send it to the wait list
 			OS_wait(currentNotificationCount);
+		} else if (mutexTask == currentTCB) {
+			// if the mutex is acquired by the same task, we can just increment the counter
+			break;
 		}
 	}
 	// Once everything above is finished, we can increment the counter in the mutex
@@ -37,6 +40,8 @@ void OS_mutex_release(OS_mutex_t * mutex) {
 			// notify the OS
 			OS_notifyAll();
 		}
+		/* prevents a spinlock as a task my immediately re-acquire the mutex after
+		   releasing in a tight loop. */
 		OS_yield();
 	}
 }

@@ -410,16 +410,6 @@
               <FilePath>.\src\OS\os_asm.s</FilePath>
             </File>
             <File>
-              <FileName>sleep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\OS\sleep.c</FilePath>
-            </File>
-            <File>
-              <FileName>sleep.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\inc\OS\sleep.h</FilePath>
-            </File>
-            <File>
               <FileName>mutex.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\OS\mutex.c</FilePath>
@@ -428,6 +418,16 @@
               <FileName>mutex.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\OS\mutex.h</FilePath>
+            </File>
+            <File>
+              <FileName>heap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\OS\heap.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\OS\heap.h</FilePath>
             </File>
           </Files>
         </Group>

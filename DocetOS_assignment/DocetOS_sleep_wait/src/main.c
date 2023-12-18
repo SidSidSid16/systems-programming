@@ -7,6 +7,12 @@
 // initialise the mutex
 static OS_mutex_t mutex = OS_MUTEX_STATIC_INITIALISER;
 
+static void example() {
+	OS_mutex_acquire(&mutex);
+	printf("    nested AAAA\n");
+	OS_mutex_release(&mutex);
+}
+
 static void task1(void const *const args) {
 	(void) args;
 	for (uint_fast16_t i = 0; i < 9999999; ++i) {
@@ -15,6 +21,7 @@ static void task1(void const *const args) {
 		}
 		OS_mutex_acquire(&mutex);
 		printf("AAAAAAAA\n");
+		example();
 		OS_mutex_release(&mutex);
 	}
 }

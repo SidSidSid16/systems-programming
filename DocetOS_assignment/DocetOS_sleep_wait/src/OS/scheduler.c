@@ -2,7 +2,7 @@
 
 #include "OS/scheduler.h"
 #include "OS/os.h"
-#include "OS/sleep.h"
+#include "OS/heap.h"
 
 #include "stm32f4xx.h"
 
@@ -26,6 +26,22 @@ _OS_tasklist_t task_list = {.head = 0};
 /* singly-linked lists to contain waiting and pending tasks */
 static _OS_tasklist_t wait_list = {.head = 0};
 static _OS_tasklist_t pending_list = {.head = 0};
+
+/* A generic heap is implemented to hold the list of sleeping tasks. 
+
+	 Since this is a generic heap, a use-case-specialised comparator function must be present. In
+	 this case, the function compares the wake time in the TCB's data field.
+
+	 A memory store is initialised, with a size predefined in the scheduler header file, and the
+	 heap itself is initialised using the store and comparator function
+*/
+static int_fast8_t heapComparator (void * item1, void * item2) {
+	uint32_t example_item1 = ((OS_TCB_t*)item1)->data;
+	uint32_t example_item2 = ((OS_TCB_t*)item2)->data;
+	return (int_fast8_t)(example_item1 - example_item2);
+}
+static void *heapStore[OS_SLEEPINGHEAP_SIZE];
+static OS_heap_t sleeping_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
 
 /* Notification counter to act as a check code, this is used to
 	 make sure that the operation can be run */
@@ -129,8 +145,8 @@ void OS_notifyAll() {
 /* Round-robin scheduler */
 OS_TCB_t const * _OS_schedule(void) {
 	// check if there are any sleeping tasks and check if any needs to be awakened
-	while (!taskHeap_isEmpty(&sleeping_list) && sleeping_list.store[0]->data <= OS_elapsedTicks()) {
-		OS_TCB_t *taskToWake = taskHeap_extract(&sleeping_list);
+	while (!OS_heap_isEmpty(&sleeping_heap) && ((OS_TCB_t *)sleeping_heap.heapStore[0])->data <= OS_elapsedTicks()) {
+		OS_TCB_t *taskToWake = OS_heap_extract(&sleeping_heap);
 		list_add(&task_list, taskToWake);
 	}
 	// remove all pending tasks until that list is empty and place them into the round-robin
@@ -215,4 +231,28 @@ void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 		// set PendSV bit to invoke context switch
 		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 	}
+}
+
+/* Since delegates functions are branched to and not directly accessed via C
+   function calls, the prototype does not need to be in the header file, they
+   can be placed right above the function for readability. */
+void OS_sleep_delegate(_OS_SVC_StackFrame_t * stack);
+/* Function to put a task to sleep for a number of ticks */
+void OS_sleep_delegate(_OS_SVC_StackFrame_t * stack) {
+	// Get the sleep duration that's been passed in
+	uint32_t sleepDuration = stack->r0;
+	// The running task's TCB is retrieved and stored
+	OS_TCB_t * currentTCB = OS_currentTCB();
+	// wakeTime time is calculated by adding sleepDuration to the elapsed OS ticks
+	uint32_t wakeTime = OS_elapsedTicks() + sleepDuration;
+	// wakeTime can be stored in TCB in the data field
+	currentTCB->data = wakeTime;
+	// Set the TCB state to sleeping
+	currentTCB->state |= TASK_STATE_SLEEP;
+	// Remove the sleeping task from the scheduler's task list
+	list_remove(&task_list, currentTCB);
+	// Place the just removed task into the heap
+	OS_heap_insert(&sleeping_heap, currentTCB);
+	// Call PendSV to invoke _OS_scheduler to start the next task
+	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
