@@ -175,12 +175,18 @@ OS_TCB_t const * _OS_schedule(void) {
 }
 
 /* Initialises a task control block (TCB) and its associated stack.  See os.h for details. */
-void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data, uint_fast8_t priority) {
+void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data, uint_fast8_t const priority) {
 	TCB->sp = stack - (sizeof(_OS_StackFrame_t) / sizeof(uint32_t));
 	TCB->state = 0;
 	TCB->prev = TCB->next = 0;
-	// user entered priority is 1-indexed, however, arrays are 0-indexed.
-	TCB->priority = --priority;
+	// check if priority has been passed and if it's a valid number
+	if (!priority || (priority > _OS_PRIORITY_LEVELS)) {
+		// if it's invalid, assign the lowest priority (highest number)
+		TCB->priority = _OS_PRIORITY_LEVELS - 1;
+	} else {
+		// user entered priority is 1-indexed, however, arrays are 0-indexed.
+		TCB->priority = priority - 1;
+	}
 	_OS_StackFrame_t *sf = (_OS_StackFrame_t *)(TCB->sp);
 	/* By placing the address of the task function in pc, and the address of _OS_task_end() in lr, the task
 	   function will be executed on the first context switch, and if it ever exits, _OS_task_end() will be

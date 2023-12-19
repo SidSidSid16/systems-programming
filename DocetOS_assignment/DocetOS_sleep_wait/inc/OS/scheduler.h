@@ -54,7 +54,7 @@ typedef struct s_OS_TCB_t {
    The third argument is a pointer to the function that the task should execute.
    The fourth argument is a void pointer to data that the task should receive. 
 	 The fifth argument is the priority level of this task */
-void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data, uint_fast8_t priority);
+void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func)(void const * const), void const * const data, uint_fast8_t const priority);
 
 void OS_addTask(OS_TCB_t * const tcb);
 
