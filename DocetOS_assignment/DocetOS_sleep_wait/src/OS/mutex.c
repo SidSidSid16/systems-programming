@@ -1,5 +1,24 @@
 #include "OS/mutex.h"
 
+/* A generic heap is implemented to hold the list of tasks waiting for this mutex. 
+
+	 Since this is a generic heap, a use-case-specialised comparator function must be present. In
+	 this case, the function compares the priority value in the TCB's data field. Higher priority
+	 tasks (denoted with a smaller numeric value) will be ordered first.
+*/
+static int_fast8_t heapComparator (void * task1, void * task2) {
+	uint32_t taskPriority1 = ((OS_TCB_t*)task1)->priority;
+	uint32_t taskPriority2 = ((OS_TCB_t*)task2)->priority;
+	return (int_fast8_t)(taskPriority1 - taskPriority2);
+}
+
+OS_mutex_t OS_createMutex() {
+	static void *heapStore[_OS_MUTEX_WAITINGHEAP_SIZE];
+	static OS_heap_t waiting_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
+	OS_mutex_t mutex = {.counter = 0, .task = 0, .waiting_heap = waiting_heap};
+	return mutex;
+}
+
 void OS_mutex_acquire(OS_mutex_t * mutex) {
 	// get the current OS task and store it
 	OS_TCB_t *currentTCB = OS_currentTCB();
@@ -40,7 +59,7 @@ void OS_mutex_release(OS_mutex_t * mutex) {
 			// notify the OS
 			OS_notifyAll();
 		}
-		/* prevents a spinlock as a task my immediately re-acquire the mutex after
+		/* prevents a spinlock as a task may immediately re-acquire the mutex after
 		   releasing in a tight loop. */
 		OS_yield();
 	}

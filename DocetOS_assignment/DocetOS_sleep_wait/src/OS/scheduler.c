@@ -36,10 +36,10 @@ static _OS_tasklist_t pending_list = {.head = 0};
 	 A memory store is initialised, with a size predefined in the scheduler header file, and the
 	 heap itself is initialised using the store and comparator function
 */
-static int_fast8_t heapComparator (void * item1, void * item2) {
-	uint32_t example_item1 = ((OS_TCB_t*)item1)->data;
-	uint32_t example_item2 = ((OS_TCB_t*)item2)->data;
-	return (int_fast8_t)(example_item1 - example_item2);
+static int_fast8_t heapComparator (void * task1, void * task2) {
+	uint32_t wakeTime1 = ((OS_TCB_t*)task1)->data;
+	uint32_t wakeTime2 = ((OS_TCB_t*)task2)->data;
+	return (int_fast8_t)(wakeTime1 - wakeTime2);
 }
 static void *heapStore[_OS_SLEEPINGHEAP_SIZE];
 static OS_heap_t sleeping_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
@@ -248,7 +248,7 @@ void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 	}
 }
 
-/* Since delegates functions are branched to and not directly accessed via C
+/* Since delegate functions are branched to and not directly accessed via C
    function calls, the prototype does not need to be in the header file, they
    can be placed right above the function for readability. */
 void OS_sleep_delegate(_OS_SVC_StackFrame_t * stack);
