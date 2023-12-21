@@ -19,7 +19,6 @@
 /*========================*/
 /*      EXTERNAL API      */
 /*========================*/
-
 typedef struct s_OS_TCB_t {
 	/* Task stack pointer.  It's important that this is the first entry in the structure,
 	   so that a simple double-dereference of a TCB pointer yields a stack pointer. */
@@ -58,10 +57,6 @@ void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func
 
 void OS_addTask(OS_TCB_t * const tcb);
 
-void OS_notifyAll(void);
-
-uint32_t OS_notificationCount_get(void);
-
 /*========================*/
 /*      INTERNAL API      */
 /*========================*/
@@ -73,6 +68,11 @@ OS_TCB_t const * _OS_schedule(void);
 typedef struct {
 	OS_TCB_t * head;
 } _OS_tasklist_t;
+
+void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task);
+OS_TCB_t * list_pop_sl(_OS_tasklist_t *list);
+
+extern _OS_tasklist_t pending_list;
 
 /* Constants that define bits in a thread's 'state' field. */
 #define TASK_STATE_YIELD    (1UL << 0) // Bit zero is the 'yield' flag

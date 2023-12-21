@@ -3,6 +3,7 @@
 #include "OS/scheduler.h"
 #include "OS/os.h"
 #include "OS/heap.h"
+#include "OS/mutex.h"
 
 #include "stm32f4xx.h"
 
@@ -24,9 +25,8 @@
 /* An array of doubly-linked lists to contain active tasks in each priority levels for scheduler */
 static _OS_tasklist_t task_list[_OS_PRIORITY_LEVELS];
 
-/* singly-linked lists to contain waiting and pending tasks */
-static _OS_tasklist_t wait_list = {.head = 0};
-static _OS_tasklist_t pending_list = {.head = 0};
+/* singly-linked lists to contain pending tasks */
+_OS_tasklist_t pending_list = {.head = 0};
 
 /* A generic heap is implemented to hold the list of sleeping tasks. 
 
@@ -43,15 +43,6 @@ static int_fast8_t heapComparator (void * task1, void * task2) {
 }
 static void *heapStore[_OS_SLEEPINGHEAP_SIZE];
 static OS_heap_t sleeping_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
-
-/* Notification counter to act as a check code, this is used to
-	 make sure that the operation can be run */
-static uint32_t notificationCounter = 0;
-
-/* A getter for notificationCounter */
-uint32_t OS_notificationCount_get() {
-	return notificationCounter;
-}
 
 static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
@@ -84,7 +75,7 @@ static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 }
 
 /* Function to push an item into a singly-linked (sl) list */
-static void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
+void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 	/* We want to load the head atomically so we use LDREX/STREX: 
 		 LDREX atomically loads the value from a location and sets
 		 an exclusive flag simultaneously.
@@ -109,7 +100,7 @@ static void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 }
 
 /* Function to pop an item from a singly-linked (sl) list */
-static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
+OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	// cache the oldHead (current head of the list that needs popping) and newHead
 	// (the item that needs to become the head after the old head is popped)
 	OS_TCB_t *oldHead = NULL;
@@ -127,20 +118,6 @@ static OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	while (__STREXW ((uint32_t) oldHead->next, (uint32_t volatile *)&(list->head)));
 	// we can return the popped task that was once the head of the list
 	return oldHead;
-}
-
-void OS_notifyAll() {
-	// increment the notification counter
-	notificationCounter++;
-	// logic is carried out until the wait list is empty
-	// 	to make this thread-safe, we can initialise the head of wait list
-	// 	so that in the case that a context switch occurs after the while
-	//	condition, the logic won't try to pop and push a NULL value.
-	OS_TCB_t * item = NULL;
-	while ((item = list_pop_sl(&wait_list))) {
-		// all tasks in the wait list are popped then pushed into the pending list
-		list_push_sl(&pending_list, item);
-	}
 }
 
 /* Round-robin scheduler */
@@ -229,20 +206,22 @@ void _OS_taskExit_delegate(void) {
    and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
    to invoke a context switch */
 void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
-	// the notifcation counter check code is passed in via the stacked r0
-	// we can extract it by type casting to _OS_SVC_StackFrame_t first.
-	uint32_t checkCode = stack->r0;
-	// only continue if the check code matches the global notification counter
-	// if the check code differs from the global notification counter, then it
-	// means that the OS_notifyAll was called, and thus the wait cannot happen
-	// since the lists differ.
-	if (checkCode == notificationCounter) {
+	// get the mutex that the task needs to wait for
+	OS_mutex_t * mutex = (OS_mutex_t *) stack->r0;
+	/* the notifcation counter check code is passed in via the stacked r0
+	   we can extract it by type casting to _OS_SVC_StackFrame_t first. */
+	uint32_t checkCode = stack->r1;
+	/* Only continue if the check code matches the mutex notification counter
+	   if the check code differs from the global notification counter, then it
+	   means that the notify function was called, and thus the wait cannot happen
+	   since the lists differ. */
+	if (mutex->notificationCounter == checkCode) {
 		// get the current task and cache it
 		OS_TCB_t * currentTask = OS_currentTCB();
 		// remove this task from the round robin
 		list_remove(&task_list[currentTask->priority], currentTask);
-		// add the current task to the wait list
-		list_push_sl(&wait_list, currentTask);
+		// add the current task to the mutex wait heap
+		OS_heap_insert(&mutex->waiting_heap, currentTask);
 		// set PendSV bit to invoke context switch
 		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 	}
