@@ -5,12 +5,12 @@
 #include <stdio.h>
 
 // initialise the mutex
-static OS_mutex_t * mutex, * mutex2;
+static OS_mutex_t mutex, mutex2;
 
 static void example() {
-	OS_mutex_acquire(mutex2);
+	OS_mutex_acquire(&mutex2);
 	printf("    nested AAAA\n");
-	OS_mutex_release(mutex2);
+	OS_mutex_release(&mutex2);
 }
 
 static void task1(void const *const args) {
@@ -19,11 +19,11 @@ static void task1(void const *const args) {
 		if (i == 5) {
 			OS_sleep(5000);
 		}
-		OS_mutex_acquire(mutex2);
+		OS_mutex_acquire(&mutex2);
 		printf("AAAAAAAA\n");
 		OS_sleep(2000);
 		example();
-		OS_mutex_release(mutex2);
+		OS_mutex_release(&mutex2);
 	}
 }
 
@@ -31,10 +31,10 @@ __attribute__((noreturn))
 static void task2(void const *const args) {
 	(void) args;
 	while (1) {
-		OS_mutex_acquire(mutex);
+		OS_mutex_acquire(&mutex);
 		printf("BBBBBBBB\n");
 		OS_sleep(2000);
-		OS_mutex_release(mutex);
+		OS_mutex_release(&mutex);
 	}
 }
 
@@ -44,10 +44,10 @@ static void task3(void const *const args) {
 		if (i == 5) {
 			OS_sleep(8000);
 		}
-		OS_mutex_acquire(mutex);
+		OS_mutex_acquire(&mutex);
 		printf("CCCCCCCC\n");
 		OS_sleep(2000);
-		OS_mutex_release(mutex);
+		OS_mutex_release(&mutex);
 	}
 }
 
@@ -77,10 +77,8 @@ int main(void) {
 	OS_addTask(&TCB2);
 	OS_addTask(&TCB3);
 	
-	OS_mutex_t newMutex = OS_createMutex();
-	OS_mutex_t anotherMutex = OS_createMutex();
-	mutex = &newMutex;
-	mutex2 = &anotherMutex;
+	OS_mutex_initialise(&mutex);
+	OS_mutex_initialise(&mutex2);
 	
 	/* Start the OS */
 	OS_start();

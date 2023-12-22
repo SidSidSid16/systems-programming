@@ -12,18 +12,13 @@ static int_fast8_t heapComparator (void * task1, void * task2) {
 	return (int_fast8_t)(taskPriority1 - taskPriority2);
 }
 
-OS_mutex_t OS_createMutex() {
-	OS_mutex_t mutex = {
-		.acquireCounter = 0,
-		.notificationCounter = 0,
-		.task = 0,
-		.waiting_heap = {
-			.heapStore = mutex.waiting_heapStore,
-			.size = 0,
-			.heapComparator = heapComparator
-		}
-	};
-	return mutex;
+void OS_mutex_initialise(OS_mutex_t * mutex) {
+	mutex->acquireCounter = 0;
+	mutex->notificationCounter = 0;
+	mutex->task = 0;
+	mutex->waiting_heap.heapComparator = heapComparator;
+	mutex->waiting_heap.heapStore = mutex->waiting_heapStore;
+	mutex->waiting_heap.size = 0;
 }
 
 void OS_mutex_acquire(OS_mutex_t * mutex) {

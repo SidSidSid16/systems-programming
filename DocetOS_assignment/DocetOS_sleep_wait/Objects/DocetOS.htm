@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\DocetOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\DocetOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Thu Dec 21 20:25:39 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Fri Dec 22 20:26:34 2023
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -16,7 +16,7 @@ Functions with no stack information
  <LI><a href="#[6]">SVC_Handler</a>
  <LI><a href="#[8]">PendSV_Handler</a>
  <LI><a href="#[150]">_task_switch</a>
- <LI><a href="#[ff]">_task_init_switch</a>
+ <LI><a href="#[fe]">_task_init_switch</a>
 </UL>
 </UL>
 <P>
@@ -129,7 +129,7 @@ Function Pointers
  <LI><a href="#[65]">_OS_enable_systick_delegate</a> from os.o(.text._OS_enable_systick_delegate) referenced from os_asm.o(OS_func)
  <LI><a href="#[68]">_OS_schedule_delegate</a> from os.o(.text._OS_schedule_delegate) referenced from os_asm.o(OS_func)
  <LI><a href="#[66]">_OS_taskExit_delegate</a> from scheduler.o(.text._OS_taskExit_delegate) referenced from os_asm.o(OS_func)
- <LI><a href="#[61]">_OS_task_end</a> from os.o(.text._OS_task_end) referenced 2 times from scheduler.o(.text.OS_initialiseTCB)
+ <LI><a href="#[60]">_OS_task_end</a> from os.o(.text._OS_task_end) referenced 2 times from scheduler.o(.text.OS_initialiseTCB)
  <LI><a href="#[69]">_OS_wait_delegate</a> from scheduler.o(.text._OS_wait_delegate) referenced from os_asm.o(OS_func)
  <LI><a href="#[67]">_OS_yield_delegate</a> from os.o(.text._OS_yield_delegate) referenced from os_asm.o(OS_func)
  <LI><a href="#[5c]">__main</a> from __main.o(!!!main) referenced from startup_stm32f407xx.o(.text)
@@ -137,7 +137,7 @@ Function Pointers
  <LI><a href="#[5e]">_printf_input_char</a> from _printf_char_common.o(.text) referenced from _printf_char_common.o(.text)
  <LI><a href="#[5d]">fputc</a> from fputc.o(i.fputc) referenced from _printf_char_file.o(.text)
  <LI><a href="#[6b]">heapComparator</a> from scheduler.o(.text.heapComparator) referenced from scheduler.o(.data.sleeping_heap)
- <LI><a href="#[60]">heapComparator</a> from mutex.o(.text.heapComparator) referenced 2 times from mutex.o(.text.OS_createMutex)
+ <LI><a href="#[61]">heapComparator</a> from mutex.o(.text.heapComparator) referenced 2 times from mutex.o(.text.OS_mutex_initialise)
  <LI><a href="#[62]">task1</a> from main.o(.text.task1) referenced 2 times from main.o(.text.main)
  <LI><a href="#[63]">task2</a> from main.o(.text.task2) referenced 2 times from main.o(.text.main)
  <LI><a href="#[64]">task3</a> from main.o(.text.task3) referenced 2 times from main.o(.text.main)
@@ -443,7 +443,7 @@ Global Symbols
 <P><STRONG><a name="[136]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[a1]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -770,13 +770,12 @@ Global Symbols
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task3
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
 </UL>
 
 <P><STRONG><a name="[c5]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_initialiseTCB
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_createMutex
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_initialiseTCB
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
@@ -787,7 +786,7 @@ Global Symbols
 
 <P><STRONG><a name="[13c]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[106]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
+<P><STRONG><a name="[105]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
@@ -1423,54 +1422,45 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ee]"></a>OS_createMutex</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, mutex.o(.text.OS_createMutex))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
-<LI>Call Chain = OS_createMutex
-</UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-</UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[f5]"></a>OS_currentTCB</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os.o(.text.OS_currentTCB))
+<P><STRONG><a name="[f4]"></a>OS_currentTCB</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os.o(.text.OS_currentTCB))
 <BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_taskExit_delegate
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
 </UL>
 
-<P><STRONG><a name="[fc]"></a>OS_elapsedTicks</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os.o(.text.OS_elapsedTicks))
-<BR><BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<P><STRONG><a name="[fb]"></a>OS_elapsedTicks</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os.o(.text.OS_elapsedTicks))
+<BR><BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
 </UL>
 
-<P><STRONG><a name="[ef]"></a>OS_heap_extract</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, heap.o(.text.OS_heap_extract))
+<P><STRONG><a name="[ee]"></a>OS_heap_extract</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, heap.o(.text.OS_heap_extract))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = OS_heap_extract &rArr; heap_down
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_down
+<BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_down
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 
-<P><STRONG><a name="[f1]"></a>OS_heap_insert</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, heap.o(.text.OS_heap_insert))
+<P><STRONG><a name="[f0]"></a>OS_heap_insert</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, heap.o(.text.OS_heap_insert))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = OS_heap_insert &rArr; heap_up
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_up
+<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_up
 </UL>
 <BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
 </UL>
 
-<P><STRONG><a name="[fa]"></a>OS_heap_isEmpty</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, heap.o(.text.OS_heap_isEmpty))
+<P><STRONG><a name="[f9]"></a>OS_heap_isEmpty</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, heap.o(.text.OS_heap_isEmpty))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = OS_heap_isEmpty
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 
-<P><STRONG><a name="[f3]"></a>OS_initialiseTCB</STRONG> (Thumb, 202 bytes, Stack size 96 bytes, scheduler.o(.text.OS_initialiseTCB))
+<P><STRONG><a name="[f2]"></a>OS_initialiseTCB</STRONG> (Thumb, 202 bytes, Stack size 96 bytes, scheduler.o(.text.OS_initialiseTCB))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96 + Unknown Stack Size
 <LI>Call Chain = OS_initialiseTCB
 </UL>
@@ -1479,56 +1469,62 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f4]"></a>OS_mutex_acquire</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, mutex.o(.text.OS_mutex_acquire))
+<P><STRONG><a name="[f3]"></a>OS_mutex_acquire</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, mutex.o(.text.OS_mutex_acquire))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = OS_mutex_acquire &rArr; _svc_2
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_2
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_2
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task3
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
 </UL>
 
-<P><STRONG><a name="[f7]"></a>OS_mutex_release</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, mutex.o(.text.OS_mutex_release))
+<P><STRONG><a name="[10b]"></a>OS_mutex_initialise</STRONG> (Thumb, 46 bytes, Stack size 4 bytes, mutex.o(.text.OS_mutex_initialise))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = OS_mutex_initialise
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[f6]"></a>OS_mutex_release</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, mutex.o(.text.OS_mutex_release))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = OS_mutex_release &rArr; OS_notifyMutex &rArr; OS_heap_extract &rArr; heap_down
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task3
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
 </UL>
 
-<P><STRONG><a name="[f8]"></a>OS_notifyMutex</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, mutex.o(.text.OS_notifyMutex))
+<P><STRONG><a name="[f7]"></a>OS_notifyMutex</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, mutex.o(.text.OS_notifyMutex))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OS_notifyMutex &rArr; OS_heap_extract &rArr; heap_down
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_push_sl
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_isEmpty
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_push_sl
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_isEmpty
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
 </UL>
 
 <P><STRONG><a name="[6a]"></a>OS_sleep_delegate</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, scheduler.o(.text.OS_sleep_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OS_sleep_delegate &rArr; OS_heap_insert &rArr; heap_up
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
-<P><STRONG><a name="[fe]"></a>OS_start</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, os.o(.text.OS_start))
+<P><STRONG><a name="[fd]"></a>OS_start</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, os.o(.text.OS_start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = OS_start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_task_init_switch
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_task_init_switch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1536,11 +1532,11 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, os.o(.text.SysTick_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[102]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 302 bytes, Stack size 24 bytes, system_stm32f4xx.o(.text.SystemCoreClockUpdate))
+<P><STRONG><a name="[101]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 302 bytes, Stack size 24 bytes, system_stm32f4xx.o(.text.SystemCoreClockUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SystemCoreClockUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
 </UL>
 
 <P><STRONG><a name="[5b]"></a>SystemInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, system_stm32f4xx.o(.text.SystemInit))
@@ -1549,19 +1545,19 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>_OS_enable_systick_delegate</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, os.o(.text._OS_enable_systick_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _OS_enable_systick_delegate &rArr; SystemCoreClockUpdate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
+<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
-<P><STRONG><a name="[103]"></a>_OS_schedule</STRONG> (Thumb, 266 bytes, Stack size 32 bytes, scheduler.o(.text._OS_schedule))
+<P><STRONG><a name="[102]"></a>_OS_schedule</STRONG> (Thumb, 266 bytes, Stack size 32 bytes, scheduler.o(.text._OS_schedule))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = _OS_schedule &rArr; OS_heap_extract &rArr; heap_down
 </UL>
-<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_pop_sl
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_isEmpty
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
+<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_pop_sl
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_isEmpty
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_elapsedTicks
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_add
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
@@ -1573,24 +1569,24 @@ Global Symbols
 <P><STRONG><a name="[66]"></a>_OS_taskExit_delegate</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, scheduler.o(.text._OS_taskExit_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _OS_taskExit_delegate &rArr; list_remove
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
-<P><STRONG><a name="[61]"></a>_OS_task_end</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, os.o(.text._OS_task_end))
+<P><STRONG><a name="[60]"></a>_OS_task_end</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, os.o(.text._OS_task_end))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = _OS_task_end &rArr; _svc_0
 </UL>
-<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_0
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> scheduler.o(.text.OS_initialiseTCB)
 </UL>
 <P><STRONG><a name="[69]"></a>_OS_wait_delegate</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, scheduler.o(.text._OS_wait_delegate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = _OS_wait_delegate &rArr; OS_heap_insert &rArr; heap_up
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
+<BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_currentTCB
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;list_remove
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> os_asm.o(OS_func)
 </UL>
@@ -1627,7 +1623,7 @@ Global Symbols
 <P><STRONG><a name="[d7]"></a>_sys_open</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, retarget_io.o(.text._sys_open))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _sys_open &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
@@ -1641,7 +1637,7 @@ Global Symbols
 <P><STRONG><a name="[e6]"></a>_sys_write</STRONG> (Thumb, 118 bytes, Stack size 40 bytes, retarget_io.o(.text._sys_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = _sys_write &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
+<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
 </UL>
@@ -1649,63 +1645,63 @@ Global Symbols
 <P><STRONG><a name="[e9]"></a>_ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, retarget_io.o(.text._ttywrch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = _ttywrch &rArr; ttywrch &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__default_signal_display
 </UL>
 
-<P><STRONG><a name="[109]"></a>configClock</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, utils.o(.text.configClock))
+<P><STRONG><a name="[108]"></a>configClock</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, utils.o(.text.configClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = configClock &rArr; SystemCoreClockUpdate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[10b]"></a>configUSART2</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, utils.o(.text.configUSART2))
+<P><STRONG><a name="[10a]"></a>configUSART2</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, utils.o(.text.configUSART2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = configUSART2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[104]"></a>list_pop_sl</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, scheduler.o(.text.list_pop_sl))
+<P><STRONG><a name="[103]"></a>list_pop_sl</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, scheduler.o(.text.list_pop_sl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = list_pop_sl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 
-<P><STRONG><a name="[fb]"></a>list_push_sl</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, scheduler.o(.text.list_push_sl))
+<P><STRONG><a name="[fa]"></a>list_push_sl</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, scheduler.o(.text.list_push_sl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = list_push_sl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_notifyMutex
 </UL>
 
-<P><STRONG><a name="[a2]"></a>main</STRONG> (Thumb, 224 bytes, Stack size 168 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
+<P><STRONG><a name="[a2]"></a>main</STRONG> (Thumb, 208 bytes, Stack size 32 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = main &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configUSART2
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_initialiseTCB
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_createMutex
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configUSART2
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configClock
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_initialise
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_initialiseTCB
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_addTask
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[107]"></a>stdout_putchar</STRONG> (Thumb, 42 bytes, Stack size 4 bytes, utils.o(.text.stdout_putchar))
+<P><STRONG><a name="[106]"></a>stdout_putchar</STRONG> (Thumb, 42 bytes, Stack size 4 bytes, utils.o(.text.stdout_putchar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ttywrch
 </UL>
 
-<P><STRONG><a name="[108]"></a>ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, utils.o(.text.ttywrch))
+<P><STRONG><a name="[107]"></a>ttywrch</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, utils.o(.text.ttywrch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = ttywrch &rArr; stdout_putchar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
+<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stdout_putchar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ttywrch
 </UL>
@@ -1772,14 +1768,14 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = PendSV_Handler &rArr; _OS_schedule &rArr; OS_heap_extract &rArr; heap_down
 </UL>
-<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[150]"></a>_task_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func), UNUSED)
 
-<P><STRONG><a name="[ff]"></a>_task_init_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func))
-<BR><BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
+<P><STRONG><a name="[fe]"></a>_task_init_switch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, os_asm.o(OS_func))
+<BR><BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_start
 </UL>
 
 <P><STRONG><a name="[c0]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
@@ -1801,7 +1797,7 @@ Global Symbols
 <P><STRONG><a name="[98]"></a>_get_lc_numeric</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_numeric_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_numeric &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_numeric_2
 </UL>
@@ -1809,7 +1805,7 @@ Global Symbols
 <P><STRONG><a name="[5f]"></a>_get_lc_ctype</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_ctype_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_ctype &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_ctype_2
 </UL>
@@ -1844,47 +1840,47 @@ Local Symbols
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
 </UL>
 
-<P><STRONG><a name="[10a]"></a>example</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, main.o(.text.example))
+<P><STRONG><a name="[109]"></a>example</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, main.o(.text.example))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = example &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
 </UL>
 
-<P><STRONG><a name="[62]"></a>task1</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, main.o(.text.task1))
+<P><STRONG><a name="[62]"></a>task1</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, main.o(.text.task1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = task1 &rArr; example &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;example
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[63]"></a>task2</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, main.o(.text.task2))
+<P><STRONG><a name="[63]"></a>task2</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(.text.task2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = task2 &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[64]"></a>task3</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, main.o(.text.task3))
+<P><STRONG><a name="[64]"></a>task3</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, main.o(.text.task3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = task3 &rArr; printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printf
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_svc_1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
@@ -1897,11 +1893,11 @@ Local Symbols
 <P><STRONG><a name="[ed]"></a>list_add</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, scheduler.o(.text.list_add))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_add
 </UL>
-<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
+<BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_schedule
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_addTask
 </UL>
 
-<P><STRONG><a name="[fd]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
+<P><STRONG><a name="[fc]"></a>list_remove</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, scheduler.o(.text.list_remove))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = list_remove
 </UL>
 <BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_wait_delegate
@@ -1909,54 +1905,54 @@ Local Symbols
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_sleep_delegate
 </UL>
 
-<P><STRONG><a name="[100]"></a>SysTick_Config</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, os.o(.text.SysTick_Config))
+<P><STRONG><a name="[ff]"></a>SysTick_Config</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, os.o(.text.SysTick_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SysTick_Config &rArr; __NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
 </UL>
 
-<P><STRONG><a name="[101]"></a>__NVIC_SetPriority</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, os.o(.text.__NVIC_SetPriority))
+<P><STRONG><a name="[100]"></a>__NVIC_SetPriority</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, os.o(.text.__NVIC_SetPriority))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_enable_systick_delegate
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Config
 </UL>
 
-<P><STRONG><a name="[105]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, os.o(.text._svc_0))
+<P><STRONG><a name="[104]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, os.o(.text._svc_0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = _svc_0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_task_end
+<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OS_task_end
 </UL>
 
-<P><STRONG><a name="[f9]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, mutex.o(.text._svc_0))
+<P><STRONG><a name="[f8]"></a>_svc_0</STRONG> (Thumb, 22 bytes, Stack size 20 bytes, mutex.o(.text._svc_0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = _svc_0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_release
 </UL>
 
-<P><STRONG><a name="[f6]"></a>_svc_2</STRONG> (Thumb, 38 bytes, Stack size 32 bytes, mutex.o(.text._svc_2))
+<P><STRONG><a name="[f5]"></a>_svc_2</STRONG> (Thumb, 38 bytes, Stack size 32 bytes, mutex.o(.text._svc_2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _svc_2
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_mutex_acquire
 </UL>
 
-<P><STRONG><a name="[60]"></a>heapComparator</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, mutex.o(.text.heapComparator))
+<P><STRONG><a name="[61]"></a>heapComparator</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, mutex.o(.text.heapComparator))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = heapComparator
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> mutex.o(.text.OS_createMutex)
+<BR>[Address Reference Count : 1]<UL><LI> mutex.o(.text.OS_mutex_initialise)
 </UL>
-<P><STRONG><a name="[f0]"></a>heap_down</STRONG> (Thumb, 210 bytes, Stack size 32 bytes, heap.o(.text.heap_down))
+<P><STRONG><a name="[ef]"></a>heap_down</STRONG> (Thumb, 210 bytes, Stack size 32 bytes, heap.o(.text.heap_down))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = heap_down
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_extract
 </UL>
 
-<P><STRONG><a name="[f2]"></a>heap_up</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, heap.o(.text.heap_up))
+<P><STRONG><a name="[f1]"></a>heap_up</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, heap.o(.text.heap_up))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = heap_up
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_heap_insert
 </UL>
 
 <P><STRONG><a name="[ba]"></a>_fp_digits</STRONG> (Thumb, 432 bytes, Stack size 96 bytes, _printf_fp_dec.o(.text))

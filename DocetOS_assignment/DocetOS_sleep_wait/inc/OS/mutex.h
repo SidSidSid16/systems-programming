@@ -26,7 +26,7 @@ typedef struct s_OS_mutex_t {
 	void * waiting_heapStore[_OS_MUTEX_WAITINGHEAP_SIZE];
 } OS_mutex_t;
 
-OS_mutex_t OS_createMutex(void);
+void OS_mutex_initialise(OS_mutex_t * mutex);
 
 void OS_mutex_acquire(OS_mutex_t * mutex);
 void OS_mutex_release(OS_mutex_t * mutex);

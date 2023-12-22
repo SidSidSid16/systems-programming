@@ -5,7 +5,7 @@
 
 // Structure definition of a generic heap
 typedef struct s_OS_heap_t {
-	void * * const heapStore;
+	void * * heapStore;
 	uint32_t size;
 	// case-specific data comparison function
 	int_fast8_t (*heapComparator) (void *, void *);
