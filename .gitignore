@@ -53,8 +53,8 @@
 *.uvgui.*
 *.uvguix.*
 
-/Objects
-/Listings
+Objects/
+Listings/
 
 
 ### Windows ###
