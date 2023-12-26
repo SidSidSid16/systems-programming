@@ -53,6 +53,9 @@
 *.uvgui.*
 *.uvguix.*
 
+/Objects
+/Listings
+
 
 ### Windows ###
 # Windows thumbnail cache files
