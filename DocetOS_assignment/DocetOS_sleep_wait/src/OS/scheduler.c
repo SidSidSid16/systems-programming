@@ -164,6 +164,8 @@ void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func
 		// user entered priority is 1-indexed, however, arrays are 0-indexed.
 		TCB->priority = priority - 1;
 	}
+	// initialise to ensure priority level is restored after inheritance promotion
+	TCB->originalPriority = TCB->priority;
 	_OS_StackFrame_t *sf = (_OS_StackFrame_t *)(TCB->sp);
 	/* By placing the address of the task function in pc, and the address of _OS_task_end() in lr, the task
 	   function will be executed on the first context switch, and if it ever exits, _OS_task_end() will be
@@ -202,10 +204,14 @@ void _OS_taskExit_delegate(void) {
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
 
+/* Since delegate functions are branched to and not directly accessed via C
+   function calls, the prototype does not need to be in the header file, they
+   can be placed right above the function for readability. */
+void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack);
 /* SVC handler that calls list_remove() to remove the current task from the round robin
    and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
    to invoke a context switch */
-void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
+void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 	// get the mutex that the task needs to wait for
 	OS_mutex_t * mutex = (OS_mutex_t *) stack->r0;
 	/* the notifcation counter check code is passed in via the stacked r0
@@ -218,10 +224,23 @@ void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 	if (mutex->notificationCounter == checkCode) {
 		// get the current task and cache it
 		OS_TCB_t * currentTask = OS_currentTCB();
+		// get the mutex-holding task and cache it
+		OS_TCB_t * mutexTask = mutex->task;
 		// remove this task from the round robin
 		list_remove(&task_list[currentTask->priority], currentTask);
 		// add the current task to the mutex wait heap
 		OS_heap_insert(&mutex->waiting_heap, currentTask);
+		/* Priority inheritance logic: promote mutex-holder if requesting task is
+			 of higher priority. Remembering that higher priority = smaller priority
+			 numbers. */
+		if (mutexTask->priority > currentTask->priority) {
+			// remove mutex-holder from task list
+			list_remove(&task_list[mutexTask->priority], mutexTask);
+			// promote the priority of the mutex-holder
+			mutexTask->priority = currentTask->priority;
+			// add the mutex-holder to the pending list for scheduler to sweep and schedule
+			list_push_sl(&pending_list, mutexTask);
+		}
 		// set PendSV bit to invoke context switch
 		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 	}
@@ -249,4 +268,24 @@ void OS_sleep_delegate(_OS_SVC_StackFrame_t * stack) {
 	OS_heap_insert(&sleeping_heap, currentTask);
 	// Call PendSV to invoke _OS_scheduler to start the next task
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
+}
+
+/* Since delegate functions are branched to and not directly accessed via C
+   function calls, the prototype does not need to be in the header file, they
+   can be placed right above the function for readability. */
+void _OS_priorityRestore_delegate(_OS_SVC_StackFrame_t * stack);
+/* Function to restore a task's original priority level after a temporary
+	 priority promotion from the mutex inheritance implementation. */
+void _OS_priorityRestore_delegate(_OS_SVC_StackFrame_t * stack) {
+	// get the TCB that needs it's priority restored from the stack
+	OS_TCB_t * task = (OS_TCB_t *) stack->r0;
+	// check if task needs priority restoration
+	if (task->priority != task->originalPriority){
+		// remove the task from scheduler task list
+		list_remove(&task_list[task->priority], task);
+		// restore the task's original priority
+		task->priority = task->originalPriority;
+		// add the task to the pending list for scheduler to sweep and schedule
+		list_push_sl(&pending_list, task);
+	}
 }

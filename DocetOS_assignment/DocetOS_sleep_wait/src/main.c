@@ -30,12 +30,14 @@ static void task1(void const *const args) {
 __attribute__((noreturn))
 static void task2(void const *const args) {
 	(void) args;
+	//OS_mutex_acquire(&mutex);
 	while (1) {
 		OS_mutex_acquire(&mutex);
 		printf("BBBBBBBB\n");
 		OS_sleep(2000);
 		OS_mutex_release(&mutex);
 	}
+	//OS_mutex_release(&mutex);
 }
 
 static void task3(void const *const args) {

@@ -31,6 +31,4 @@ void OS_mutex_initialise(OS_mutex_t * mutex);
 void OS_mutex_acquire(OS_mutex_t * mutex);
 void OS_mutex_release(OS_mutex_t * mutex);
 
-void OS_notifyMutex(OS_mutex_t * mutex);
-
 #endif /* MUTEX_H */

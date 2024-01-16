@@ -30,7 +30,10 @@ typedef struct s_OS_TCB_t {
 	/* This is a generic field that can be used to store other things of various types. */
 	uint32_t data;
 	/* This field contains the priority level of this task. */
-	uint_fast8_t priority;
+	uint_fast8_t volatile priority;
+	/* This field contains the original priority level of this task prior to mutex-inheritance
+		 promotion. Must not be modified outside of OS_initialiseTCB()! */
+	uint_fast8_t originalPriority;
 	/* next and prev tasks fields for linked-list behaviour. */
 	struct s_OS_TCB_t * prev;
 	struct s_OS_TCB_t * next;

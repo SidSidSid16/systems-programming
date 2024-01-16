@@ -1,5 +1,7 @@
 #include "OS/heap.h"
 
+#include <stdio.h>
+
 static void heap_up(OS_heap_t *heap) {
 	uint32_t childNode = heap->size;
 	while (childNode > 1) {
@@ -38,21 +40,46 @@ static void heap_down(OS_heap_t *heap) {
 	}
 }
 
+/* A function that checks if the heap is empty, returning a 1 if empty, and a
+	 non-zero value if heap contains items. */
+uint_fast8_t OS_heap_isEmpty(OS_heap_t *heap) {
+	return !(heap->size);
+}
+
 void OS_heap_insert(OS_heap_t *heap, void * item) {
 	// The new element is always added to the end of a heap
 	heap->heapStore[(heap->size)++] = item;
 	heap_up(heap);
 }
 
+/* A function to extract the head item from the heap */
 void * OS_heap_extract(OS_heap_t *heap) {
-	// The root value is extracted, and the space filled by the value from the end
-	// If the heap is empty, this will fail horribly...
-	void * item = heap->heapStore[0];
-	heap->heapStore[0] = heap->heapStore[--(heap->size)];
-	heap_down(heap);
-	return item;
+	// only proceed with extraction if heap is not empty
+	if (!OS_heap_isEmpty(heap)) {
+		// cache the head item
+		void * item = heap->heapStore[0];
+		// update the index and size counter
+		heap->heapStore[0] = heap->heapStore[--(heap->size)];
+		// fill space from the end
+		heap_down(heap);
+		// return the head item
+		return item;
+	} else {
+		// return null if heap is empty
+		return NULL;
+	}
 }
 
-uint_fast8_t OS_heap_isEmpty(OS_heap_t *heap) {
-	return !(heap->size);
+/* A function to peek the head of the heap */
+void * OS_heap_peek(OS_heap_t *heap) {
+	// only proceed if heap is not empty
+	if (!OS_heap_isEmpty(heap)) {
+		// cache the item at the head
+		void * item = heap->heapStore[0];
+		// return the head item
+		return item;
+	} else {
+		// return null if heap is empty
+		return NULL;
+	}
 }

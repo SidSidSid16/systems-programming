@@ -19,8 +19,10 @@ enum OS_SVC_e {
 	OS_SVC_EXIT,
 	OS_SVC_YIELD,
 	OS_SVC_SCHEDULE,
-	OS_SVC_WAIT,
 	OS_SVC_SLEEP,
+	OS_SVC_MUTEX_WAIT,
+	OS_SVC_MUTEX_NOTIFY,
+	OS_SVC_PRIORITY_RESTORE,
 };
 
 /***************************/
@@ -58,8 +60,10 @@ uint32_t OS_elapsedTicks(void);
 		
 		_OS_schedule will the schedule the next task.*/
 #define OS_yield() _svc_0(OS_SVC_YIELD)
-#define OS_wait(x,y) _svc_2(x, y, OS_SVC_WAIT)
 #define OS_sleep(x) _svc_1(x, OS_SVC_SLEEP)
+#define OS_mutex_wait(x,y) _svc_2(x, y, OS_SVC_MUTEX_WAIT)
+#define OS_mutex_notify(x) _svc_1(x, OS_SVC_MUTEX_NOTIFY)
+#define OS_priorityRestore(x) _svc_1(x, OS_SVC_PRIORITY_RESTORE)
 
 /*========================*/
 /*      INTERNAL API      */
@@ -174,7 +178,6 @@ void SysTick_Handler(void);
 void _OS_yield_delegate(void);
 void _OS_schedule_delegate(void);
 void _OS_enable_systick_delegate(void);
-void _OS_wait_delegate(_OS_SVC_StackFrame_t * stack);
 void _OS_taskExit_delegate(void);
 
 #endif /* OS_INTERNAL */
