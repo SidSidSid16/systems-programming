@@ -429,6 +429,16 @@
               <FileType>5</FileType>
               <FilePath>.\inc\OS\heap.h</FilePath>
             </File>
+            <File>
+              <FileName>semaphore.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\OS\semaphore.c</FilePath>
+            </File>
+            <File>
+              <FileName>semaphore.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\OS\semaphore.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

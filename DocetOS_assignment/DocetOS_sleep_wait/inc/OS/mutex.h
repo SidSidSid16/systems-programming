@@ -26,9 +26,12 @@ typedef struct s_OS_mutex_t {
 	void * waiting_heapStore[_OS_MUTEX_WAITINGHEAP_SIZE];
 } OS_mutex_t;
 
+/* A function that initialises a mutex, addressed by a pointer, in preparation for use,
+	 allowing for the use of a mutex directly from a mutex pointer type. */
 void OS_mutex_initialise(OS_mutex_t * mutex);
-
+/* A function that can be called by a task to acquire a mutex. */
 void OS_mutex_acquire(OS_mutex_t * mutex);
+/* A function that can be called by a task to release a mutex. */
 void OS_mutex_release(OS_mutex_t * mutex);
 
 #endif /* MUTEX_H */

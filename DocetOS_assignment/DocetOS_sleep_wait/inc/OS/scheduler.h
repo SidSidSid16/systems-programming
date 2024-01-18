@@ -73,7 +73,8 @@ typedef struct {
 } _OS_tasklist_t;
 
 void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task);
-OS_TCB_t * list_pop_sl(_OS_tasklist_t *list);
+OS_TCB_t * list_pop_head_sl(_OS_tasklist_t *list);
+OS_TCB_t * list_pop_tail_sl(_OS_tasklist_t *list);
 
 extern _OS_tasklist_t pending_list;
 

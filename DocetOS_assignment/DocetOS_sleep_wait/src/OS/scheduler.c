@@ -4,9 +4,9 @@
 #include "OS/os.h"
 #include "OS/heap.h"
 #include "OS/mutex.h"
+#include "OS/semaphore.h"
 
 #include "stm32f4xx.h"
-
 #include <string.h>
 
 
@@ -31,37 +31,48 @@ _OS_tasklist_t pending_list = {.head = 0};
 /* A generic heap is implemented to hold the list of sleeping tasks. 
 
 	 Since this is a generic heap, a use-case-specialised comparator function must be present. In
-	 this case, the function compares the wake time in the TCB's data field.
-
-	 A memory store is initialised, with a size predefined in the scheduler header file, and the
-	 heap itself is initialised using the store and comparator function
-*/
+	 this case, the function compares the wake time in the TCB's data field. */
 static int_fast8_t heapComparator (void * task1, void * task2) {
 	uint32_t wakeTime1 = ((OS_TCB_t*)task1)->data;
 	uint32_t wakeTime2 = ((OS_TCB_t*)task2)->data;
 	return (int_fast8_t)(wakeTime1 - wakeTime2);
 }
+/* A memory store is initialised, with a size predefined in the scheduler header file, and the
+	 heap itself is initialised using the store and comparator function. */
 static void *heapStore[_OS_SLEEPINGHEAP_SIZE];
 static OS_heap_t sleeping_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
 
+/* A function to add a task to the start of a doubly linked list whilst preserving the head,
+	 used in the scheduler's round-robin task list. */
 static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
+		// if list is empty, the new task becomes the head of the list
+		// link the new task to itself
 		task->next = task;
 		task->prev = task;
+		// new task becomes head of the list
 		list->head = task;
 	} else {
+		// if list is not empty, preserve the head and add new item at the start
+		// link the next element of new task to old head
 		task->next = list->head;
+		// link the prev element of new task to list tail
 		task->prev = list->head->prev;
+		// break old tail-to-head link
 		task->prev->next = task;
+		// break old head-to-tail link
 		list->head->prev = task;
 	}
 }
 
+/* A function to remove a task from a doubly linked list,
+	 used in the sheduler's round-robin task list. */
 static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 	// check if task being removed is the only task in the list
 	if (task->next == task) {
 		// if it is the only task, we make the list empty
 		list->head = 0;
+		// and removal has finished, thus we return
 		return;
 	} else if (list->head == task) {
 		// check if the task being deleted is at the head
@@ -74,7 +85,7 @@ static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 	task->prev->next = task->next;
 }
 
-/* Function to push an item into a singly-linked (sl) list */
+/* Function to push an item into the head of a singly-linked (sl) list */
 void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 	/* We want to load the head atomically so we use LDREX/STREX: 
 		 LDREX atomically loads the value from a location and sets
@@ -99,11 +110,11 @@ void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task) {
 	while (__STREXW ((uint32_t) task, (uint32_t volatile *)&(list->head)));
 }
 
-/* Function to pop an item from a singly-linked (sl) list */
-OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
-	// cache the oldHead (current head of the list that needs popping) and newHead
-	// (the item that needs to become the head after the old head is popped)
-	OS_TCB_t *oldHead = NULL;
+/* Function to pop an item from the head of a singly-linked (sl) list */
+OS_TCB_t * list_pop_head_sl(_OS_tasklist_t * list) {
+	/* cache the oldHead (current head of the list that needs popping) and newHead
+		 (the item that needs to become the head after the old head is popped). */
+	OS_TCB_t * oldHead = NULL;
 	do {
 		// get the current head of the list
 		oldHead = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(list->head));
@@ -120,6 +131,51 @@ OS_TCB_t * list_pop_sl(_OS_tasklist_t *list) {
 	return oldHead;
 }
 
+/* Function to pop an item from the tail of a singly-linked (sl) list */
+OS_TCB_t * list_pop_tail_sl(_OS_tasklist_t * list) {
+	/* initialise the current and next items of the list to help with traversing the list
+		 with exclusive store and load intrinsics. */
+	OS_TCB_t * prev = NULL;
+	OS_TCB_t * current = NULL;
+	do {
+		// ensure that previous item is still NULL
+		prev = NULL;
+		// get the head of the list
+		current = (OS_TCB_t *) __LDREXW ((uint32_t volatile *)&(list->head));
+		// if there is no items in the list, we need to exit the do-while
+		if (!current) {
+			// since we're breaking early, the exclusive flags must be cleared
+			__CLREX();
+			return NULL;
+		}
+		// traverse the list to find the last item, ensure current and next items exist
+		while (current->next) {
+			// cache the current before overwriting it
+			prev = current;
+			// load in the next value as the current
+			current = current->next;
+		}
+		/* if the while loop above exits with prev still set to null, it means there's
+			 only one element in the list. */
+		if (!prev && current) {
+			// try to exclusively store the reset list
+			if (!(__STREXW (0, (uint32_t volatile *)&(list->head)))) {
+				// if STREXW succeeds, then return the only item in the list to break out
+				return current;
+			} else {
+				/* if the STREX fails, then the list has been modified, therefore, the
+					 do-while logic must be repeated to parse the new and updated list. */
+				continue;
+			}
+		}
+		/* reaching this point in the code signifies that there is no next element,
+			 therefore, we are at the end of the list. We can try to reset and exclusively
+			 store the prev item's next field to remove the tail. */
+	} while ((__STREXW (0, (uint32_t volatile *)&(prev->next))));
+	// return the tail of the list
+	return current;
+}
+
 /* Round-robin scheduler */
 OS_TCB_t const * _OS_schedule(void) {
 	// check if there are any sleeping tasks and check if any needs to be awakened
@@ -131,7 +187,7 @@ OS_TCB_t const * _OS_schedule(void) {
 	while (pending_list.head) {
 		// since task_list is doubly-linked, we use list add, pending_list is popped with the
 		// singly-linked (sl) pop function
-		OS_TCB_t *taskToRun = list_pop_sl(&pending_list);
+		OS_TCB_t *taskToRun = list_pop_head_sl(&pending_list);
 		list_add(&task_list[taskToRun->priority], taskToRun);
 	}
 	// iterate for each priority level
@@ -208,9 +264,10 @@ void _OS_taskExit_delegate(void) {
    function calls, the prototype does not need to be in the header file, they
    can be placed right above the function for readability. */
 void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack);
-/* SVC handler that calls list_remove() to remove the current task from the round robin
-   and calls list_push_sl() to add the current task to the wait list. PendSV bit is set
-   to invoke a context switch */
+/* SVC handler that removes the current task from the round robin and inserts it
+	 into the priority level sorted mutex-specific heap. If the mutex-holding task
+	 has a lower priority than the task entering the waiting list, the mutex-holder
+	 gains a priority level promotion to ensure speedy release. */
 void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 	// get the mutex that the task needs to wait for
 	OS_mutex_t * mutex = (OS_mutex_t *) stack->r0;
@@ -241,6 +298,34 @@ void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 			// add the mutex-holder to the pending list for scheduler to sweep and schedule
 			list_push_sl(&pending_list, mutexTask);
 		}
+		// set PendSV bit to invoke context switch
+		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
+	}
+}
+
+/* Since delegate functions are branched to and not directly accessed via C
+   function calls, the prototype does not need to be in the header file, they
+   can be placed right above the function for readability. */
+void _OS_semaphore_wait_delegate(_OS_SVC_StackFrame_t * stack);
+/* SVC handler that removes the current task from the round robin and adds to the
+	 semaphore-specific singly-linked waiting list. */
+void _OS_semaphore_wait_delegate(_OS_SVC_StackFrame_t * stack) {
+	// get the semaphore that the task needs to wait for
+	OS_semaphore_t * semaphore = (OS_semaphore_t *) stack->r0;
+	/* the notifcation counter check code is passed in via the stacked r0
+	   we can extract it by type casting to _OS_SVC_StackFrame_t first. */
+	uint32_t checkCode = stack->r1;
+	/* Only continue if the check code matches the semaphore notification counter
+	   if the check code differs from the global notification counter, then it
+	   means that the notify function was called, and thus the wait cannot happen
+	   since the lists differ. */
+	if (semaphore->notificationCounter == checkCode) {
+		// get the current task and cache it
+		OS_TCB_t * currentTask = OS_currentTCB();
+		// remove this task from the round robin
+		list_remove(&task_list[currentTask->priority], currentTask);
+		// add the current task to the semaphore wait heap
+		list_push_sl(&semaphore->waiting_list, currentTask);
 		// set PendSV bit to invoke context switch
 		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 	}

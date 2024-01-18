@@ -46,13 +46,14 @@ uint_fast8_t OS_heap_isEmpty(OS_heap_t *heap) {
 	return !(heap->size);
 }
 
+/* A function to insert an item into the heap. */
 void OS_heap_insert(OS_heap_t *heap, void * item) {
 	// The new element is always added to the end of a heap
 	heap->heapStore[(heap->size)++] = item;
 	heap_up(heap);
 }
 
-/* A function to extract the head item from the heap */
+/* A function to extract the head item from the heap. */
 void * OS_heap_extract(OS_heap_t *heap) {
 	// only proceed with extraction if heap is not empty
 	if (!OS_heap_isEmpty(heap)) {
@@ -70,7 +71,7 @@ void * OS_heap_extract(OS_heap_t *heap) {
 	}
 }
 
-/* A function to peek the head of the heap */
+/* A function to peek the head of the heap. */
 void * OS_heap_peek(OS_heap_t *heap) {
 	// only proceed if heap is not empty
 	if (!OS_heap_isEmpty(heap)) {

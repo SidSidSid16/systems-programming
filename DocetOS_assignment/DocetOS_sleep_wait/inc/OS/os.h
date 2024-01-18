@@ -23,6 +23,7 @@ enum OS_SVC_e {
 	OS_SVC_MUTEX_WAIT,
 	OS_SVC_MUTEX_NOTIFY,
 	OS_SVC_PRIORITY_RESTORE,
+	OS_SVC_SEMAPHORE_WAIT,
 };
 
 /***************************/
@@ -61,9 +62,12 @@ uint32_t OS_elapsedTicks(void);
 		_OS_schedule will the schedule the next task.*/
 #define OS_yield() _svc_0(OS_SVC_YIELD)
 #define OS_sleep(x) _svc_1(x, OS_SVC_SLEEP)
+
 #define OS_mutex_wait(x,y) _svc_2(x, y, OS_SVC_MUTEX_WAIT)
 #define OS_mutex_notify(x) _svc_1(x, OS_SVC_MUTEX_NOTIFY)
 #define OS_priorityRestore(x) _svc_1(x, OS_SVC_PRIORITY_RESTORE)
+
+#define OS_semaphore_wait(x,y) _svc_2(x, y, OS_SVC_SEMAPHORE_WAIT)
 
 /*========================*/
 /*      INTERNAL API      */

@@ -24,6 +24,11 @@ void OS_mutex_initialise(OS_mutex_t * mutex) {
 	mutex->waiting_heap.size = 0;
 }
 
+/* A function that a task can use to acquire a mutex. Exclusively loads and stores the mutex task
+	 to ensure atomic ownership assignment preserving thread safety. If a mutex is already owned by
+	 another task, the function sends the requesting task into the wait list by calling the mutex
+	 wait delegate. If the mutex is owned by the requesting task, the mutex's acquire counter is
+	 incremented. */
 void OS_mutex_acquire(OS_mutex_t * mutex) {
 	// get the current OS task and store it
 	OS_TCB_t *currentTCB = OS_currentTCB();
@@ -52,6 +57,10 @@ void OS_mutex_acquire(OS_mutex_t * mutex) {
 	mutex->acquireCounter++;
 }
 
+/* A function that a task can use to release a mutex that it owns. Function ensures that only the
+	 task owning the mutex is making the request. The mutex acquire counter is decremented and if the
+	 counter is at 0, the task's priority is restored, mutex is reset, and the highest priority waiting
+	 task for the mutex is notified. */
 void OS_mutex_release(OS_mutex_t * mutex) {
 	// check if the mutex is owned by the task that is calling this function
 	if (mutex->task == OS_currentTCB()) {

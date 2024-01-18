@@ -1,8 +1,8 @@
 #define OS_INTERNAL
 
 #include "OS/os.h"
-#include "stm32f4xx.h"
 
+#include "stm32f4xx.h"
 #include <stdlib.h>
 
 __ALIGNED(8)
