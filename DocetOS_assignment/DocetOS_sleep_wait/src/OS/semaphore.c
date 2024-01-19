@@ -53,7 +53,6 @@ void OS_semaphore_release(OS_semaphore_t * semaphore) {
 	_OS_semaphore_notify(semaphore);
 	/* after notifying waiting task, we invoke a context switch to prevent a spinlock as a task
 		 may immediately re-acquire the semaphore after releasing in a tight loop.*/
-	// SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 	OS_yield();
 }
 

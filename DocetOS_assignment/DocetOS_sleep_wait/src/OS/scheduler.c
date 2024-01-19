@@ -44,7 +44,7 @@ static OS_heap_t sleeping_heap = OS_HEAP_INITIALISER(heapStore, heapComparator);
 
 /* A function to add a task to the start of a doubly linked list whilst preserving the head,
 	 used in the scheduler's round-robin task list. */
-static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
+static void _list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 	if (!(list->head)) {
 		// if list is empty, the new task becomes the head of the list
 		// link the new task to itself
@@ -67,7 +67,7 @@ static void list_add(_OS_tasklist_t *list, OS_TCB_t *task) {
 
 /* A function to remove a task from a doubly linked list,
 	 used in the sheduler's round-robin task list. */
-static void list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
+static void _list_remove(_OS_tasklist_t *list, OS_TCB_t *task) {
 	// check if task being removed is the only task in the list
 	if (task->next == task) {
 		// if it is the only task, we make the list empty
@@ -181,14 +181,14 @@ OS_TCB_t const * _OS_schedule(void) {
 	// check if there are any sleeping tasks and check if any needs to be awakened
 	while (!OS_heap_isEmpty(&sleeping_heap) && ((OS_TCB_t *)sleeping_heap.heapStore[0])->data <= OS_elapsedTicks()) {
 		OS_TCB_t *taskToWake = OS_heap_extract(&sleeping_heap);
-		list_add(&task_list[taskToWake->priority], taskToWake);
+		_list_add(&task_list[taskToWake->priority], taskToWake);
 	}
 	// remove all pending tasks until that list is empty and place them into the round-robin
 	while (pending_list.head) {
 		// since task_list is doubly-linked, we use list add, pending_list is popped with the
 		// singly-linked (sl) pop function
 		OS_TCB_t *taskToRun = list_pop_head_sl(&pending_list);
-		list_add(&task_list[taskToRun->priority], taskToRun);
+		_list_add(&task_list[taskToRun->priority], taskToRun);
 	}
 	// iterate for each priority level
 	for (uint_fast8_t i = 0; i < _OS_PRIORITY_LEVELS; i++) {
@@ -248,7 +248,7 @@ void OS_initialiseTCB(OS_TCB_t * TCB, uint32_t * const stack, void (* const func
 
 /* 'Add task' */
 void OS_addTask(OS_TCB_t * const tcb) {
-	list_add(&task_list[tcb->priority], tcb);
+	_list_add(&task_list[tcb->priority], tcb);
 }
 
 /* SVC handler that's called by _OS_task_end when a task finishes.  Removes the
@@ -256,7 +256,7 @@ void OS_addTask(OS_TCB_t * const tcb) {
 void _OS_taskExit_delegate(void) {
 	// Remove the given TCB from the list of tasks so it won't be run again
 	OS_TCB_t * tcb = OS_currentTCB();
-	list_remove(&task_list[tcb->priority], tcb);
+	_list_remove(&task_list[tcb->priority], tcb);
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
 
@@ -284,7 +284,7 @@ void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 		// get the mutex-holding task and cache it
 		OS_TCB_t * mutexTask = mutex->task;
 		// remove this task from the round robin
-		list_remove(&task_list[currentTask->priority], currentTask);
+		_list_remove(&task_list[currentTask->priority], currentTask);
 		// add the current task to the mutex wait heap
 		OS_heap_insert(&mutex->waiting_heap, currentTask);
 		/* Priority inheritance logic: promote mutex-holder if requesting task is
@@ -292,7 +292,7 @@ void _OS_mutex_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 			 numbers. */
 		if (mutexTask->priority > currentTask->priority) {
 			// remove mutex-holder from task list
-			list_remove(&task_list[mutexTask->priority], mutexTask);
+			_list_remove(&task_list[mutexTask->priority], mutexTask);
 			// promote the priority of the mutex-holder
 			mutexTask->priority = currentTask->priority;
 			// add the mutex-holder to the pending list for scheduler to sweep and schedule
@@ -323,7 +323,7 @@ void _OS_semaphore_wait_delegate(_OS_SVC_StackFrame_t * stack) {
 		// get the current task and cache it
 		OS_TCB_t * currentTask = OS_currentTCB();
 		// remove this task from the round robin
-		list_remove(&task_list[currentTask->priority], currentTask);
+		_list_remove(&task_list[currentTask->priority], currentTask);
 		// add the current task to the semaphore wait heap
 		list_push_sl(&semaphore->waiting_list, currentTask);
 		// set PendSV bit to invoke context switch
@@ -348,7 +348,7 @@ void OS_sleep_delegate(_OS_SVC_StackFrame_t * stack) {
 	// Set the TCB state to sleeping
 	currentTask->state |= TASK_STATE_SLEEP;
 	// Remove the sleeping task from the scheduler's task list
-	list_remove(&task_list[currentTask->priority], currentTask);
+	_list_remove(&task_list[currentTask->priority], currentTask);
 	// Place the just removed task into the heap
 	OS_heap_insert(&sleeping_heap, currentTask);
 	// Call PendSV to invoke _OS_scheduler to start the next task
@@ -367,7 +367,7 @@ void _OS_priorityRestore_delegate(_OS_SVC_StackFrame_t * stack) {
 	// check if task needs priority restoration
 	if (task->priority != task->originalPriority){
 		// remove the task from scheduler task list
-		list_remove(&task_list[task->priority], task);
+		_list_remove(&task_list[task->priority], task);
 		// restore the task's original priority
 		task->priority = task->originalPriority;
 		// add the task to the pending list for scheduler to sweep and schedule

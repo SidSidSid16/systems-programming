@@ -14,7 +14,7 @@
 		level follows 'priority inversion' where smaller numeric values denote higher priorities. Priority levels
 		are 1-indexed until when it is stored in the TCB field and used for array manipulation logic, where it is
 		changed to 0-indexed. */
-#define _OS_PRIORITY_LEVELS 3
+#define _OS_PRIORITY_LEVELS 4
 
 /*========================*/
 /*      EXTERNAL API      */

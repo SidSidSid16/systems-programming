@@ -112,7 +112,7 @@ _idle_task
     ; The following line is commented out because it doesn't play nicely with the debugger.
     ; For deployment, uncomment this line and the CPU will sleep when idling, waking only to
     ; handle interrupts.
-;   WFI
+    WFI
     B       _idle_task
     
     ALIGN
