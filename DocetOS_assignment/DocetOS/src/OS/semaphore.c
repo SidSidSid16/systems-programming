@@ -10,10 +10,11 @@ void OS_semaphore_initialise(OS_semaphore_t * semaphore, uint32_t totalTokens) {
 	semaphore->waiting_list.head = 0;
 }
 
-/* A function that a task can use to acquire a semaphore. Exclusively loads the semaphore token
-	 counter to ensure thread safety. If the semaphore has tokens available, the token count is
-	 decremented and stored exclusively. If the semaphore has no tokens left, the semaphore-based
-	 wait delegate function is called to send the requesting task to the waiting list. */
+/* A function that a task can use to acquire a semaphore, addressed by a pointer. Exclusively
+	 loads the semaphore token counter to ensure thread safety. If the semaphore has tokens
+	 available, the token count is decremented and stored exclusively. If the semaphore has no
+	 tokens left, the semaphore-based wait delegate function is called to send the requesting
+	 task to the waiting list. */
 void OS_semaphore_acquire(OS_semaphore_t * semaphore) {
 	while (1) {
 		// get and store the current semaphore notification count
@@ -35,9 +36,9 @@ void OS_semaphore_acquire(OS_semaphore_t * semaphore) {
 	}
 }
 
-/* A function that can be called by any task or ISR to release a semaphore. Exclusively loads
-	 the semaphore token counter to then decrement and exclusively store ensuring thread safety.
-	 On successful semaphore release, a waiting task is notified. */
+/* A function that can be called by any task or ISR to release a semaphore, addressed by a
+	 pointer. Exclusively loads the semaphore token counter to then decrement and exclusively
+	 store ensuring thread safety. On successful semaphore release, a waiting task is notified. */
 void OS_semaphore_release(OS_semaphore_t * semaphore) {
 	while (1) {
 		// exclusively load the token counter field of semaphore
@@ -51,14 +52,14 @@ void OS_semaphore_release(OS_semaphore_t * semaphore) {
 	/* breaking out of while loop signifying successful token increase, thus semaphore release,
 		 therefore we can notify a waiting task. */
 	_OS_semaphore_notify(semaphore);
-	/* after notifying waiting task, we invoke a context switch to prevent a spinlock as a task
+	/* After notifying waiting task, we invoke a context switch to prevent a spinlock as a task
 		 may immediately re-acquire the semaphore after releasing in a tight loop. In order to ensure
 		 successful yielding in both standard functions and ISRs, logic must detect whether the CPU
 		 is in handler-mode (ISR execution) or thread-mode (most standard code). If the CPU is in
 		 handler-mode, a manual PendSV bit set must occur, otherwise, the yield delegate can be
-		 called. IPSR field of the PSR holds the exception number of the exception being processed,
-		 with the field set to 0 if there is no active interrupt. */
-	uint32_t handlerMode = __get_xPSR() & PSR_IPSR_HANDLER_MASK;
+		 called. The IPSR register the exception number of the exception being processed, with the
+		 field set to 0 if there is no active interrupt. */
+	uint32_t handlerMode = __get_IPSR();
 	if (handlerMode) {
 		// set PendSV bit to invoke context switch
 		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
@@ -68,7 +69,8 @@ void OS_semaphore_release(OS_semaphore_t * semaphore) {
 	}
 }
 
-/* A function that notifies a waiting task of semaphore release. */
+/* A function that notifies a waiting task of semaphore release. Function takes in a pointer
+	 to the semaphore. */
 void _OS_semaphore_notify(OS_semaphore_t * semaphore) {
 	while (1) {
 		// exclusively load the notification counter field of semaphore

@@ -6,9 +6,6 @@
 #include "OS/os.h"
 #include "OS/scheduler.h"
 
-/* Mask to extract the last 9 bits (IPSR) of xPSR */
-#define PSR_IPSR_HANDLER_MASK 0x1FF
-
 typedef struct s_OS_semaphore_t {
 	// counter to track the number of acquisitions
 	uint32_t tokenCounter;

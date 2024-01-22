@@ -156,7 +156,7 @@ static void control_thread_dev1() {
 		// log to the console
 		OS_mutex_acquire(&consoleOutMutex);
 		printf("control_thread_dev1: Curr.: %" PRId8 "*C, Desi.: %" PRId8 "*C, new Desi.: %" PRId8 "*C, Heat.: %" PRId8 " \n\n\n",
-						currentTempToDisplay, desiredTempToDisplay, heatingStatusToDisplay, newDesiredTempToDisplay);
+						currentTempToDisplay, desiredTempToDisplay, newDesiredTempToDisplay, heatingStatusToDisplay);
 		OS_mutex_release(&consoleOutMutex);
 		
 		// change temp another time after 10 seconds
@@ -223,7 +223,7 @@ int main(void) {
 	configClock();
 	configUSART2(38400);
 	
-	printf("\r\nDocetOS\r\n");
+	printf("\r\nDocetOS\r\n\n\n");
 
 	/* Reserve memory for two stacks and two TCBs.
 	   Remember that stacks must be 8-byte aligned. */

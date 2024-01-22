@@ -4,8 +4,7 @@
 
 	 Since this is a generic heap, a use-case-specialised comparator function must be present. In
 	 this case, the function compares the priority value in the TCB's data field. Higher priority
-	 tasks (denoted with a smaller numeric value) will be ordered first.
-*/
+	 tasks (denoted with a smaller numeric value) will be ordered first. */
 static int_fast8_t heapComparator (void * task1, void * task2) {
 	uint32_t taskPriority1 = ((OS_TCB_t*)task1)->priority;
 	uint32_t taskPriority2 = ((OS_TCB_t*)task2)->priority;
@@ -13,8 +12,8 @@ static int_fast8_t heapComparator (void * task1, void * task2) {
 }
 
 /* A function that initialises a mutex, addressed by a pointer, in preparation for use,
-	 allowing for the use of a mutex directly from a mutex pointer type.
-*/
+	 allowing for the use of a mutex directly from a mutex pointer type. Function takes
+	 in a pointer to the mutex to initialise. */
 void OS_mutex_initialise(OS_mutex_t * mutex) {
 	mutex->acquireCounter = 0;
 	mutex->notificationCounter = 0;
@@ -28,7 +27,7 @@ void OS_mutex_initialise(OS_mutex_t * mutex) {
 	 to ensure atomic ownership assignment preserving thread safety. If a mutex is already owned by
 	 another task, the function sends the requesting task into the wait list by calling the mutex
 	 wait delegate. If the mutex is owned by the requesting task, the mutex's acquire counter is
-	 incremented. */
+	 incremented. Function takes in a pointer to the mutex.*/
 void OS_mutex_acquire(OS_mutex_t * mutex) {
 	// get the current OS task and store it
 	OS_TCB_t *currentTCB = OS_currentTCB();
@@ -60,7 +59,7 @@ void OS_mutex_acquire(OS_mutex_t * mutex) {
 /* A function that a task can use to release a mutex that it owns. Function ensures that only the
 	 task owning the mutex is making the request. The mutex acquire counter is decremented and if the
 	 counter is at 0, the task's priority is restored, mutex is reset, and the highest priority waiting
-	 task for the mutex is notified. */
+	 task for the mutex is notified. Function takes in a pointer to the mutex. */
 void OS_mutex_release(OS_mutex_t * mutex) {
 	// check if the mutex is owned by the task that is calling this function
 	if (mutex->task == OS_currentTCB()) {
@@ -75,7 +74,7 @@ void OS_mutex_release(OS_mutex_t * mutex) {
 			// notify the OS
 			OS_mutex_notify((uint32_t)mutex);
 		}
-		/* prevents a spinlock as a task may immediately re-acquire the mutex after
+		/* Prevents a spinlock as a task may immediately re-acquire the mutex after
 		   releasing in a tight loop. */
 		OS_yield();
 	}
@@ -83,9 +82,10 @@ void OS_mutex_release(OS_mutex_t * mutex) {
 
 /* Since delegate functions are branched to and not directly accessed via C
    function calls, the prototype does not need to be in the header file, they
-   can be placed right above the function for readability. */
+   can be placed right above the function for readability. Function takes in
+	 a pointer to the mutex. */
 void _OS_mutex_notify_delegate(_OS_SVC_StackFrame_t * stack);
-/* Function to notify a waiting task on release of mutex */
+/* Function to notify a waiting task on release of mutex. */
 void _OS_mutex_notify_delegate(_OS_SVC_StackFrame_t * stack) {
 	// get the mutex that the task needs to wait for
 	OS_mutex_t * mutex = (OS_mutex_t *) stack->r0;

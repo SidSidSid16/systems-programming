@@ -20,7 +20,7 @@
 /*      EXTERNAL API      */
 /*========================*/
 typedef struct s_OS_TCB_t {
-	/* Task stack pointer.  It's important that this is the first entry in the structure,
+	/* Task stack pointer. It's important that this is the first entry in the structure,
 	   so that a simple double-dereference of a TCB pointer yields a stack pointer. */
 	void * volatile sp;
 	/* This field is intended to describe the state of the thread - whether it's yielding,
@@ -34,7 +34,7 @@ typedef struct s_OS_TCB_t {
 	/* This field contains the original priority level of this task prior to mutex-inheritance
 		 promotion. Must not be modified outside of OS_initialiseTCB()! */
 	uint_fast8_t originalPriority;
-	/* next and prev tasks fields for linked-list behaviour. */
+	/* Next and prev tasks fields for linked-list behaviour. */
 	struct s_OS_TCB_t * prev;
 	struct s_OS_TCB_t * next;
 } OS_TCB_t;
@@ -72,9 +72,9 @@ typedef struct {
 	OS_TCB_t * head;
 } _OS_tasklist_t;
 
-void list_push_sl(_OS_tasklist_t *list, OS_TCB_t *task);
-OS_TCB_t * list_pop_head_sl(_OS_tasklist_t *list);
-OS_TCB_t * list_pop_tail_sl(_OS_tasklist_t *list);
+void list_push_sl(_OS_tasklist_t * list, OS_TCB_t * task);
+OS_TCB_t * list_pop_head_sl(_OS_tasklist_t * list);
+OS_TCB_t * list_pop_tail_sl(_OS_tasklist_t * list);
 
 extern _OS_tasklist_t pending_list;
 

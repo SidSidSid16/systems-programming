@@ -35,7 +35,7 @@ uint32_t OS_elapsedTicks(void) {
 	return _ticks;
 }
 
-/* IRQ handler for the system tick.  Schedules PendSV 
+/* IRQ handler for the system tick. Schedules PendSV 
 	
 		SysTick_Handler is called by a hardware timer, it is configured in
 		_OS_enable_systick_delegate(void) at the end of this script. It is
@@ -55,7 +55,7 @@ void SysTick_Handler(void) {
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
 }
 
-/* SVC handler for OS_yield().  Sets the TASK_STATE_YIELD flag and schedules PendSV */
+/* SVC handler for OS_yield(). Sets the TASK_STATE_YIELD flag and schedules PendSV */
 void _OS_yield_delegate(void) {
 	_currentTCB->state |= TASK_STATE_YIELD;
 	SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
@@ -73,12 +73,12 @@ void OS_start(void) {
 }
 
 /* Function that's called by a task when it ends (the address of this function is
-   inserted into the link register of the initial stack frame for a task).  Invokes a SVC
+   inserted into the link register of the initial stack frame for a task). Invokes a SVC
    call (see os.h); the handler is _OS_taskExit_delegate() (see scheduler.c). */
 void _OS_task_end(void) {
 	_OS_task_exit();
-	/* DO NOT STEP OUT OF THIS FUNCTION when debugging!  PendSV must be allowed to run
-	   and switch tasks.  A hard fault awaits if you ignore this.
+	/* DO NOT STEP OUT OF THIS FUNCTION when debugging! PendSV must be allowed to run
+	   and switch tasks. A hard fault awaits if you ignore this.
 		 If you want to see what happens next, or debug something, set a breakpoint at the
 	   start of PendSV_Handler (see os_asm.s) and hit 'run'. */
 }

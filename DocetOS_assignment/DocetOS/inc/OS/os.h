@@ -61,13 +61,35 @@ uint32_t OS_elapsedTicks(void);
 		
 		_OS_schedule will the schedule the next task.*/
 #define OS_yield() _svc_0(OS_SVC_YIELD)
+
+/* SVC delegate to sleep the current task:
+		When called from within a task, the delegate will first calculate the wake up time
+	  to wake the task up, this time is stored in the data field of the TCB with the sleep
+		field in the status flags TCB field toggled set high. The delegate removes the task
+		from the scheduler's DL task list, and adds the task to the sleeping head, sorted by
+		order of wake time, soonest wake time at the head. PendSV bit is set to invoke a
+		context switch. */
 #define OS_sleep(x) _svc_1(x, OS_SVC_SLEEP)
 
+/* SVC delegates for mutual exclusion features:
+		The wait delegate function for both re-entrant mutexes (denoted as mutex) and counting
+		semaphores will send tasks requesting for acquired mutexes or unavailable semaphores to
+		the waiting list within either the mutex structure (generic heap) or the semaphore
+		structure (FIFO SL task list). Check code is confirmed prior to invoking a task wait to
+		ensure deadlocks are prevented, finally, the PendSV bit is set to invoke a context
+		switch.
+
+		The mutex notify function notifies the head of the waiting list of the mutex that the
+		mutex has been released and is ready to acquire. The delegate function can be found in
+		the mutex souce code.
+		
+		The priority restore delegate solves priority inversion by granting the mutex-holder the
+		priority level of the highest priority waiting task to ensure prompt mutex release. */
 #define OS_mutex_wait(x,y) _svc_2(x, y, OS_SVC_MUTEX_WAIT)
+#define OS_semaphore_wait(x,y) _svc_2(x, y, OS_SVC_SEMAPHORE_WAIT)
 #define OS_mutex_notify(x) _svc_1(x, OS_SVC_MUTEX_NOTIFY)
 #define OS_priorityRestore(x) _svc_1(x, OS_SVC_PRIORITY_RESTORE)
 
-#define OS_semaphore_wait(x,y) _svc_2(x, y, OS_SVC_SEMAPHORE_WAIT)
 
 /*========================*/
 /*      INTERNAL API      */

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /* Internal heap function to move nodes up to maintain heap ordering. */
-static void _heap_up(OS_heap_t *heap) {
+static void _heap_up(OS_heap_t * heap) {
 	// start with the last node in the heap
 	uint32_t childNode = heap->size;
 	while (childNode > 1) {
@@ -22,7 +22,7 @@ static void _heap_up(OS_heap_t *heap) {
 }
 
 /* Internal heap function to move nodes down to maintain heap ordering. */
-static void _heap_down(OS_heap_t *heap) {
+static void _heap_down(OS_heap_t * heap) {
 	// start with the root node
 	uint32_t parentNode = 1;
 	// calculate the left child node position first
@@ -57,20 +57,25 @@ static void _heap_down(OS_heap_t *heap) {
 }
 
 /* A function that checks if the heap is empty, returning a 1 if empty, and a
-	 non-zero value if heap contains items. */
-uint_fast8_t OS_heap_isEmpty(OS_heap_t *heap) {
+	 non-zero value if heap contains items. Function takes in a pointer to the
+	 heap. */
+uint_fast8_t OS_heap_isEmpty(OS_heap_t * heap) {
 	return !(heap->size);
 }
 
-/* A function to insert an item into the heap. */
-void OS_heap_insert(OS_heap_t *heap, void * item) {
+/* A function to insert an item into the heap. Function takes in a pointer to
+	 the heap to insert into and a pointer to the item to insert. */
+void OS_heap_insert(OS_heap_t * heap, void * item) {
 	// The new element is always added to the end of a heap
 	heap->heapStore[(heap->size)++] = item;
 	_heap_up(heap);
 }
 
-/* A function to extract the head item from the heap. */
-void * OS_heap_extract(OS_heap_t *heap) {
+/* A function to extract the head item from the heap. Function takes in a	
+	 pointer to the heap to extract from. Returns NULL if the heap is empty
+	 and an object couldn't be extracted, otherwise returns a void pointer of
+	 the generic item. */
+void * OS_heap_extract(OS_heap_t * heap) {
 	// only proceed with extraction if heap is not empty
 	if (!OS_heap_isEmpty(heap)) {
 		// cache the head item
@@ -87,8 +92,11 @@ void * OS_heap_extract(OS_heap_t *heap) {
 	}
 }
 
-/* A function to peek the head of the heap. */
-void * OS_heap_peek(OS_heap_t *heap) {
+/* A function to peek the head of the heap. Function takes in a pointer
+	 to the heap to peek, returns a NULL if the heap is empty, otherwise
+	 returns the void pointer to the generic item without extracting it
+	 from the heap. */
+void * OS_heap_peek(OS_heap_t * heap) {
 	// only proceed if heap is not empty
 	if (!OS_heap_isEmpty(heap)) {
 		// cache the item at the head
