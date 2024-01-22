@@ -52,8 +52,20 @@ void OS_semaphore_release(OS_semaphore_t * semaphore) {
 		 therefore we can notify a waiting task. */
 	_OS_semaphore_notify(semaphore);
 	/* after notifying waiting task, we invoke a context switch to prevent a spinlock as a task
-		 may immediately re-acquire the semaphore after releasing in a tight loop.*/
-	OS_yield();
+		 may immediately re-acquire the semaphore after releasing in a tight loop. In order to ensure
+		 successful yielding in both standard functions and ISRs, logic must detect whether the CPU
+		 is in handler-mode (ISR execution) or thread-mode (most standard code). If the CPU is in
+		 handler-mode, a manual PendSV bit set must occur, otherwise, the yield delegate can be
+		 called. IPSR field of the PSR holds the exception number of the exception being processed,
+		 with the field set to 0 if there is no active interrupt. */
+	uint32_t handlerMode = __get_xPSR() & PSR_IPSR_HANDLER_MASK;
+	if (handlerMode) {
+		// set PendSV bit to invoke context switch
+		SCB->ICSR = SCB_ICSR_PENDSVSET_Msk;
+	} else {
+		// call yield delegate to invoke context switch
+		OS_yield();
+	}
 }
 
 /* A function that notifies a waiting task of semaphore release. */
